@@ -1,0 +1,2713 @@
+<!doctype html>
+
+
+<!-- ================= PRIMARY SEO META ================= -->
+MoodMeter — Daily Mood Tracker, Mood Journal & Emotional Wellness App
+
+
+
+
+
+<link rel="canonical" href="https://www.moodmeterapp.com/" id="canonicalLink" />
+
+
+
+
+
+
+
+
+
+<!-- ================= PERFORMANCE / PRELOAD ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdn.tailwindcss.com" />
+<link rel="preconnect" href="https://www.gstatic.com" />
+<link rel="preconnect" href="https://firestore.googleapis.com" />
+<link rel="dns-prefetch" href="https://firestore.googleapis.com" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- ================= STRUCTURED DATA (JSON-LD) ================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MoodMeter",
+  "url": "https://www.moodmeterapp.com/",
+  "description": "MoodMeter is a daily mood tracker and mood journal app for logging feelings, viewing mood statistics on a mood calendar, and sharing moods anonymously with a wellness-focused community.",
+  "inLanguage": "en",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.moodmeterapp.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "MoodMeter",
+  "applicationCategory": "HealthApplication",
+  "applicationSubCategory": "Mental Wellness / Mood Tracker",
+  "operatingSystem": "Any (Web-based)",
+  "url": "https://www.moodmeterapp.com/",
+  "description": "A daily mood tracker and mood journal that lets users log emotions, build a mood calendar, review mood analytics, and share moods anonymously within a supportive community.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Daily mood logging",
+    "Mood journal with private notes",
+    "Mood calendar history",
+    "Global and personal mood statistics",
+    "Anonymous mood sharing",
+    "Community feed and private messaging"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MoodMeter",
+  "url": "https://www.moodmeterapp.com/",
+  "logo": "https://www.moodmeterapp.com/assets/moodmeter-logo.png",
+  "description": "MoodMeter builds tools that help people track their emotional health through daily mood tracking, mood journaling, and community-based mental wellness support."
+}
+</script>
+
+<style>
+    :root{ --glow: 250,225,120; --glow2: 120,180,255; --safe-bottom: env(safe-area-inset-bottom, 0px); }
+    *{ font-family:'Inter',sans-serif; box-sizing:border-box; }
+    h1,h2,h3,h4,.display{ font-family:'Space Grotesk',sans-serif; }
+    body{ background:#0B0C14; color:#EDEBF5; min-height:100vh; overflow-x:hidden; }
+    .glow-field{ position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(650px circle at 15% 10%, rgba(var(--glow),0.20), transparent 60%),
+        radial-gradient(700px circle at 90% 80%, rgba(var(--glow2),0.16), transparent 60%);
+      transition: background 900ms ease; }
+    .glass{ background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(18px); }
+    .mood-card{ transition: transform .2s ease, box-shadow .2s ease; contain: layout style paint; }
+    .mood-card:hover{ transform: translateY(-4px); }
+    .mood-card.selected{ box-shadow: 0 0 0 2px rgba(255,255,255,0.5), 0 12px 30px -8px rgba(var(--glow),0.5); }
+    .tab-btn.active{ color:#0B0C14; background:#EDEBF5; }
+    .tab-btn{ transition: background .2s ease, color .2s ease; }
+    .scope-btn.active{ background:#EDEBF5; color:#0B0C14; }
+    .subtab-btn.active{ background:#EDEBF5; color:#0B0C14; }
+    .subtab-btn{ transition: background .2s ease, color .2s ease; }
+    .msgsub-btn.active{ background:#EDEBF5; color:#0B0C14; }
+    .msgsub-btn{ transition: background .2s ease, color .2s ease; }
+    .scroll-thin{ scroll-behavior:smooth; }
+    .scroll-thin::-webkit-scrollbar{ width:6px; }
+    .scroll-thin::-webkit-scrollbar-thumb{ background:rgba(255,255,255,0.15); border-radius:10px; }
+    .switch{ width:42px; height:24px; border-radius:999px; background:rgba(255,255,255,0.12); position:relative; cursor:pointer; transition:.2s; flex-shrink:0; }
+    .switch::after{ content:''; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#EDEBF5; transition:.2s; }
+    .switch.on{ background:#7CB4FF; }
+    .switch.on::after{ transform:translateX(18px); background:#0B0C14; }
+    .fade-in{ animation:fadeIn .3s ease both; will-change: opacity, transform; }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+    .checkmark-pop{ animation:pop .5s cubic-bezier(.34,1.56,.64,1) both; }
+    @keyframes pop{ 0%{transform:scale(0); opacity:0;} 60%{transform:scale(1.15); opacity:1;} 100%{transform:scale(1);} }
+    .bar-fill{ transition: width 900ms cubic-bezier(.22,.9,.34,1); will-change: width; }
+    .spin{ animation:spin 1s linear infinite; }
+    @keyframes spin{ to{transform:rotate(360deg);} }
+    .input-field{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); }
+    .input-field:focus{ outline:none; border-color:rgba(255,255,255,0.35); }
+    .toast{ animation: slideIn .3s ease both, fadeOut .3s ease 2.7s forwards; }
+    @keyframes slideIn{ from{ transform:translateX(30px); opacity:0;} to{ transform:translateX(0); opacity:1;} }
+    @keyframes fadeOut{ to{ opacity:0; transform:translateX(30px);} }
+    .lock-btn{ background: linear-gradient(110deg,#FFD98A,#FFB4C6 45%,#9FD8FF); }
+    .lock-btn:active{ transform:scale(.96); }
+    .lock-btn:disabled{ opacity:.4; pointer-events:none; }
+    .modal-backdrop{ background:rgba(6,7,12,0.75); backdrop-filter: blur(6px); }
+    .cal-day{ aspect-ratio:1/1; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:11px; transition:transform .15s ease; }
+    .cal-day:hover{ transform:scale(1.08); }
+    main{ padding-bottom: 9rem !important; will-change: opacity, transform; }
+    @media(min-width:768px){ main{ padding-bottom:2.5rem !important; } }
+    .line-clamp-3{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .name-link{ cursor:pointer; }
+    .name-link:hover{ text-decoration:underline; }
+    #bottomNav{
+      position:fixed !important; bottom:0 !important; left:0 !important; right:0 !important; z-index:999999 !important;
+      transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform;
+      background:rgba(0,0,0,0.65); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      border-top:1px solid rgba(255,255,255,0.12); box-shadow:0 -8px 30px rgba(0,0,0,0.5);
+      padding-bottom: var(--safe-bottom);
+    }
+    .bottom-tab{ position:relative; color:rgba(255,255,255,0.45); transition:all .2s ease; }
+    .bottom-tab .bt-icon{ font-size:1.25rem; transition:transform .2s ease; }
+    .bottom-tab.active{ color:#0B0C14; }
+    .bottom-tab.active .bt-pill{ opacity:1; transform:scale(1); }
+    .bottom-tab.active .bt-icon{ transform:translateY(-1px) scale(1.05); }
+    .bt-pill{ position:absolute; inset:0; border-radius:14px; background:linear-gradient(110deg,#FFD98A,#FFB4C6 50%,#9FD8FF); opacity:0; transform:scale(.7); transition:all .25s cubic-bezier(.34,1.56,.64,1); z-index:-1; box-shadow:0 4px 16px -2px rgba(255,180,150,0.55); will-change: opacity, transform; }
+    .bt-badge{ position:absolute; top:2px; right:8px; min-width:14px; height:14px; border-radius:999px; background:#FF5C5C; color:#fff; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; padding:0 3px; }
+    .logout-pill-mobile{ background:rgba(239,68,68,0.16); border:1px solid rgba(239,68,68,0.35); color:#FCA5A5; }
+    .nav-badge{ background:#FF5C5C; color:#fff; font-size:10px; font-weight:700; border-radius:999px; padding:1px 6px; }
+    .unread-dot{ width:9px; height:9px; border-radius:999px; background:#7CB4FF; box-shadow:0 0 0 3px rgba(124,180,255,0.2); flex-shrink:0; }
+    .chat-online-dot{ width:8px; height:8px; border-radius:999px; background:#10b981; box-shadow:0 0 8px #10b981; animation:chatPulse 1.6s ease-in-out infinite; flex-shrink:0; }
+    @keyframes chatPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.45; } }
+    .seen-avatar{ width:14px; height:14px; border-radius:999px; background:linear-gradient(135deg,#f0abfc,#fde68a); display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:800; color:#0B0C14; flex-shrink:0; }
+    .personal-mood-row{ border:1px solid; transition: transform .15s ease; }
+    .personal-mood-row:hover{ transform: translateX(2px); }
+    .stat-card-v2{ position:relative; overflow:hidden; }
+    .stat-card-v2 .stat-sub{ font-size:10px; line-height:1.3; }
+    .picker-field{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:#EDEBF5; border-radius:12px; padding:.6rem .9rem; font-size:.8rem; outline:none; }
+    .picker-field:focus{ border-color:rgba(255,255,255,0.35); }
+    .picker-field::-webkit-calendar-picker-indicator{ filter:invert(1); opacity:.6; cursor:pointer; }
+    .donut-wrap{ position:relative; }
+    .donut-center{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .share-btn{ transition:transform .15s ease, background .2s ease; }
+    .share-btn:active{ transform:scale(.95); }
+    .segpath{ transition: stroke-dasharray .8s cubic-bezier(.22,.9,.34,1), stroke-dashoffset .8s cubic-bezier(.22,.9,.34,1); }
+    #chatFullPage{
+      position:fixed; inset:0; z-index:40; background:#0B0C14; display:flex; flex-direction:column;
+      will-change: opacity, transform;
+    }
+    @media(min-width:768px){ #chatFullPage{ left:16rem; } }
+    #chatBody{ scroll-behavior:smooth; will-change: opacity, transform; }
+    .msg-bubble{ max-width:75%; word-break:break-word; }
+    .block-btn-blocked{ background:rgba(16,185,129,0.15); border:1px solid rgba(52,211,153,0.35); color:#6EE7B7; }
+    .block-btn-active{ background:rgba(239,68,68,0.1); border:1px solid rgba(248,113,113,0.3); color:#FCA5A5; }
+    .mode-btn.active{ background:#EDEBF5; color:#0B0C14; }
+    .mode-btn{ transition: background .2s ease, color .2s ease; }
+    .seo-content-section a{ color:#9FD8FF; text-decoration:underline; }
+
+    /* --- NEW LANDING PAGE STYLES --- */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px -8px rgba(var(--glow),0.25); }
+    .read-more-btn, .read-less-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-weight: 500; border-radius: 2rem; padding: 0.6rem 1.8rem; font-size: 0.9rem; transition: all 0.3s ease; cursor: pointer; }
+    .read-more-btn:hover, .read-less-btn:hover { background: rgba(255,255,255,0.15); }
+    .expanded-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .expanded-content.open { max-height: 5000px; }
+    .faq-details { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-details summary { padding: 1.2rem 0; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-details summary::-webkit-details-marker { display: none; }
+    .faq-details summary::after { content: "+"; font-size: 1.5rem; color: rgba(255,255,255,0.6); transition: transform 0.3s ease; }
+    .faq-details[open] summary::after { content: "−"; transform: rotate(180deg); }
+    .faq-details .faq-answer { padding: 0 0 1.5rem 0; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .footer-link { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-link:hover { color: #fff; }
+    .social-icon { width: 2.5rem; height: 2.5rem; background: rgba(255,255,255,0.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; font-size: 1.2rem; }
+    .social-icon:hover { background: rgba(255,255,255,0.15); }
+</style>
+
+
+
+<div class="glow-field" id="glowField"></div>
+
+<div id="splash" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B0C14]">
+  <div class="flex flex-col items-center gap-3">
+    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-200 to-sky-300 flex items-center justify-center text-2xl spin">🌗</div>
+    <span class="text-white/40 text-sm">Loading MoodMeter…</span>
+  </div>
+</div>
+
+<!-- ===================== AUTH SCREEN ===================== -->
+<div id="authScreen" class="hidden fixed inset-0 z-40 flex items-center justify-center p-4 overflow-y-auto">
+  <div class="glass rounded-3xl w-full max-w-md p-8 relative z-10 my-8">
+    <div class="flex items-center gap-2 mb-6 justify-center">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200 to-sky-300 flex items-center justify-center text-xl">🌗</div>
+      <span class="display text-2xl font-semibold">MoodMeter</span>
+    </div>
+    <div class="flex bg-white/5 rounded-xl p-1 mb-6" id="authTabs">
+      <button data-authtab="login" class="authtab-btn flex-1 py-2 rounded-lg text-sm font-medium active">Log In</button>
+      <button data-authtab="register" class="authtab-btn flex-1 py-2 rounded-lg text-sm font-medium text-white/60">Sign Up</button>
+    </div>
+    <div id="authError" class="hidden bg-red-500/10 border border-red-500/30 text-red-300 text-xs rounded-lg px-3 py-2 mb-4"></div>
+    <form id="loginForm" class="space-y-3">
+      <div>
+        <label class="text-xs text-white/50 mb-1 block">Email</label>
+        <input type="email" required id="loginEmail" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="you@example.com" />
+      </div>
+      <div>
+        <label class="text-xs text-white/50 mb-1 block">Password</label>
+        <input type="password" required id="loginPassword" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="••••••••" />
+      </div>
+      <button type="button" id="forgotPasswordBtn" class="text-xs text-white/40 hover:text-white/70 transition">Forgot password?</button>
+      <button type="submit" class="lock-btn w-full py-3 rounded-xl text-black font-semibold text-sm mt-2 flex items-center justify-center gap-2 active:scale-95 transition" id="loginSubmitBtn">Log In</button>
+    </form>
+    <form id="registerForm" class="space-y-3 hidden">
+      <div>
+        <label class="text-xs text-white/50 mb-1 block">Display Name</label>
+        <input type="text" required id="registerName" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="How should we call you?" />
+      </div>
+      <div>
+        <label class="text-xs text-white/50 mb-1 block">Email</label>
+        <input type="email" required id="registerEmail" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="you@example.com" />
+      </div>
+      <div>
+        <label class="text-xs text-white/50 mb-1 block">Password <span class="text-white/30">(min 6 characters)</span></label>
+        <input type="password" required minlength="6" id="registerPassword" class="input-field w-full rounded-xl px-4 py-3 text-sm" placeholder="••••••••" />
+      </div>
+      <button type="submit" class="lock-btn w-full py-3 rounded-xl text-black font-semibold text-sm mt-2 flex items-center justify-center gap-2 active:scale-95 transition" id="registerSubmitBtn">Create Account</button>
+    </form>
+    <div class="flex items-center gap-3 my-5">
+      <div class="h-px bg-white/10 flex-1"></div><span class="text-xs text-white/30">or</span><div class="h-px bg-white/10 flex-1"></div>
+    </div>
+    <button id="guestBtn" class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition active:scale-95">Continue as Guest 👤</button>
+    <p class="text-[11px] text-white/30 text-center mt-4 leading-relaxed">By continuing you agree this is a wellbeing tool, not medical advice. Be kind in the community. 💛 You'll stay signed in on this device.</p>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="appShell" class="hidden relative z-10 min-h-screen flex flex-col md:flex-row">
+
+  <nav class="hidden md:flex glass md:w-64 md:min-h-screen md:sticky md:top-0 md:h-screen flex-col justify-between p-6 z-20" aria-label="Primary navigation">
+    <div>
+      <div class="flex items-center gap-2 mb-8">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-200 to-sky-300 flex items-center justify-center text-lg">🌗</div>
+        <span class="display text-xl font-semibold tracking-tight">MoodMeter</span>
+      </div>
+      <div class="flex flex-col gap-2" id="navButtonsDesktop">
+        <button data-view="home" class="tab-btn active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium w-full text-left"><span>🏠</span><span>Daily Log</span></button>
+        <button data-view="feed" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium w-full text-left text-white/70"><span>👥</span><span>Feed</span></button>
+        <button data-view="messages" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium w-full text-left text-white/70 justify-between"><span class="flex items-center gap-3"><span>✉️</span><span>Messages</span></span><span id="msgNavBadgeDesktop" class="hidden nav-badge">0</span></button>
+        <button data-view="analytics" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium w-full text-left text-white/70"><span>📊</span><span>Vibe Monitor</span></button>
+        <button data-view="profile" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium w-full text-left text-white/70"><span>👤</span><span>My Sanctuary</span></button>
+      </div>
+    </div>
+    <div class="mt-6">
+      <div class="flex items-center gap-2 mb-2" id="connStatusRow">
+        <span class="w-2 h-2 rounded-full bg-yellow-400 spin" id="connDot"></span>
+        <span id="connText" class="text-xs text-white/40">Connecting…</span>
+      </div>
+      <div class="glass rounded-xl p-3 flex items-center gap-3 mb-2">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-sm font-bold" id="userAvatar">?</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-sm font-medium truncate" id="userName">—</div>
+          <div class="text-[11px] text-white/40 truncate" id="userEmail">—</div>
+        </div>
+      </div>
+      <button id="logoutBtnDesktop" class="w-full py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm font-medium hover:bg-red-500/20 transition flex items-center justify-center gap-2 active:scale-95">Logout 🚪</button>
+    </div>
+  </nav>
+
+  <header class="md:hidden glass sticky top-0 z-20 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-200 to-sky-300 flex items-center justify-center text-base">🌗</div>
+      <span class="display text-lg font-semibold">MoodMeter</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-yellow-400 spin" id="connDotMobile"></span>
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-xs font-bold" id="userAvatarMobile">?</div>
+      <button id="logoutBtnMobile" class="logout-pill-mobile text-xs font-semibold px-3 py-1.5 rounded-full">Logout 🚪</button>
+    </div>
+  </header>
+
+  <main class="flex-1 p-4 md:p-10 w-full max-w-[94%] sm:max-w-[96%] md:max-w-[98%] mx-auto px-2 sm:px-4">
+
+    <!-- ===================== HOME VIEW ===================== -->
+    <section id="view-home" class="fade-in">
+      <h1 class="display text-3xl md:text-4xl font-semibold mb-1" id="homeGreeting">How are you, really?</h1>
+      <p class="text-white/50 mb-6">Log today's mood in a few taps. It stays between you and the world, however much you choose to share.</p>
+
+      <div id="todayNotice" class="hidden glass rounded-xl px-4 py-3 mb-6 text-sm flex items-center gap-2"></div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-6 gap-3 md:gap-4 mb-8" id="moodGrid"></div>
+
+      <div class="glass rounded-2xl p-5 md:p-6 mb-6">
+        <label class="text-sm text-white/60 mb-2 block">Micro-journal <span class="text-white/30">(optional)</span></label>
+        <textarea id="noteInput" rows="3" maxlength="240" placeholder="What's on your mind right now?" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-white/30 resize-none placeholder:text-white/25"></textarea>
+        <div class="text-right text-xs text-white/30 mt-1"><span id="noteCount">0</span>/240</div>
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+          <div class="flex items-center justify-between flex-1 bg-white/5 rounded-xl px-4 py-3">
+            <div><div class="text-sm font-medium">Post to Feed</div><div class="text-xs text-white/40">Share this entry publicly</div></div>
+            <div class="switch on" id="privacySwitch"></div>
+          </div>
+          <div class="flex items-center justify-between flex-1 bg-white/5 rounded-xl px-4 py-3">
+            <div><div class="text-sm font-medium">Post anonymously</div><div class="text-xs text-white/40">Hide your identity</div></div>
+            <div class="switch" id="anonSwitch"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="lockMoodBtn" class="lock-btn w-full md:w-auto px-8 py-4 rounded-2xl text-black font-semibold display text-base flex items-center justify-center gap-2 transition disabled:opacity-40 disabled:active:scale-100" disabled>
+        <span id="lockBtnSpinner" class="hidden w-4 h-4 border-2 border-black/30 border-t-black rounded-full spin"></span>
+        <span id="lockBtnLabel">Select a mood to continue</span>
+      </button>
+
+      <div id="successBanner" class="hidden mt-4 glass rounded-2xl p-4 flex items-center gap-3">
+        <span class="checkmark-pop text-2xl">✅</span>
+        <span class="text-sm" id="successText">Mood locked in. Thanks for checking in with yourself today.</span>
+      </div>
+
+      <!-- ================= NEW LANDING PAGE SECTIONS ================= -->
+
+      <!-- 1. Why Use MoodMeter -->
+      <section id="why-use-moodmeter" class="mt-16 mb-16">
+        <h2 class="display text-3xl font-semibold mb-8 text-center">Why Use MoodMeter?</h2>
+        <div class="feature-grid">
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-lg font-semibold mb-2">Daily Mood Tracking</h3>
+            <p class="text-sm text-white/70">Tap your mood in seconds — no lengthy forms. Build a habit of self-awareness every day.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">📓</div>
+            <h3 class="text-lg font-semibold mb-2">Mood Journal</h3>
+            <p class="text-sm text-white/70">Add a personal note to each entry. A lightweight diary that grows with you.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">🕶️</div>
+            <h3 class="text-lg font-semibold mb-2">Anonymous Sharing</h3>
+            <p class="text-sm text-white/70">Share your mood publicly without revealing your identity. Honesty without fear.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">👥</div>
+            <h3 class="text-lg font-semibold mb-2">Community Feed</h3>
+            <p class="text-sm text-white/70">See real moods from real people in the last 24 hours. Feel less alone.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">📅</div>
+            <h3 class="text-lg font-semibold mb-2">Mood Calendar</h3>
+            <p class="text-sm text-white/70">Color‑coded monthly view of your emotional history. Patterns you can see at a glance.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-lg font-semibold mb-2">Mood Statistics</h3>
+            <p class="text-sm text-white/70">Detailed personal and community‑wide analytics. Explore trends over weeks, months, and years.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">✉️</div>
+            <h3 class="text-lg font-semibold mb-2">Private Messaging</h3>
+            <p class="text-sm text-white/70">Connect one‑on‑one with supportive people. Real conversations, on your terms.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 text-center feature-card">
+            <div class="text-4xl mb-4">💚</div>
+            <h3 class="text-lg font-semibold mb-2">Emotional Wellness</h3>
+            <p class="text-sm text-white/70">Small daily check‑ins that add up to a healthier relationship with your feelings.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. SEO Content (with Read More / Read Less) -->
+      <article id="seo-article" class="seo-content-section glass rounded-2xl p-6 md:p-8 mt-12 text-sm leading-relaxed text-white/70">
+        <h2 class="display text-2xl font-semibold text-white mb-4">MoodMeter: Your Daily Mood Tracker and Mood Journal for Emotional Health</h2>
+        <div id="seo-truncated-content">
+          <p class="mb-4">MoodMeter is a simple, human-first <strong>daily mood tracker</strong> built for anyone who wants to understand their emotions a little better, one day at a time. Instead of forcing you into complicated worksheets or long-form journaling, MoodMeter turns the idea of a <strong>mood journal</strong> into a few gentle taps: pick how you feel, add an optional note, and you're done. Over days, weeks, and months, those small check-ins become a meaningful record of your <strong>emotional health</strong> — something you can look back on to notice patterns, celebrate good stretches, and recognize when you might need a little extra support.</p>
+          <p class="mb-4">At the center of the experience is a simple six-mood system — Happy, Sad, Angry, Calm, Stressed, and Neutral — designed to make <strong>daily feelings</strong> easy to name without overthinking it. Each entry can include a short micro-journal note, so MoodMeter doubles as a lightweight <strong>mental health journal</strong> whenever you want to capture a bit more context about your day.</p>
+        </div>
+        <div class="expanded-content" id="seo-full-content">
+          <p class="mb-4">That flexibility is what makes MoodMeter more than just a private diary. If you'd rather keep your feelings to yourself, every log can remain fully private, visible only to you. But if you'd like to feel less alone in a hard moment, or simply enjoy being part of a supportive space, you can post publicly to the community Feed — with the option of <strong>anonymous mood sharing</strong> so you can be open without revealing who you are. This balance between privacy and connection is at the heart of how MoodMeter approaches <strong>mental wellness</strong>: support should never require giving up your comfort or safety.</p>
+          <p class="mb-4">The <strong>mood calendar</strong> in your personal Sanctuary turns your history into a visual, color-coded month-by-month view, so you can see at a glance how your emotional weather has shifted over time. Paired with a running check-in streak and a full scrollable timeline of past entries, it becomes easy to notice things like "I've felt more stressed this week" or "this has been an unusually calm month" — the kind of pattern recognition that's hard to do from memory alone, but comes naturally once your <strong>emotion tracker</strong> data is laid out in front of you.</p>
+          <p class="mb-4">Beyond your own history, MoodMeter's Vibe Monitor gives you rich <strong>mood analytics</strong> and <strong>mood statistics</strong>, both personal and community-wide. You can explore a Global Daily Mood Tracker to see how the whole community is feeling on any given day or month, browse a rolling weekly community trend chart, and dig into your own monthly and yearly emotional breakdowns. Each of these reports can be shared directly to WhatsApp, Facebook, or X, turning your reflections — or the community's collective mood — into something you can talk about with friends or followers.</p>
+          <p class="mb-4">MoodMeter is also a social space, not just a solo tracking tool. You can follow other members, react to their entries with a heart, a hug, or a strength emoji, leave comments, and start private conversations through message requests. A dedicated Messages tab keeps your active chats and incoming requests organized, with read receipts, online status, and the ability to block anyone you'd rather not hear from — so the community side of MoodMeter stays supportive on your terms.</p>
+          <p class="mb-4">Whether you're using MoodMeter as a quiet, private <strong>mood journal</strong> for your own <strong>mental health journal</strong> practice, or as a way to feel connected to others navigating similar ups and downs, the goal is the same: make checking in with yourself a small, sustainable daily habit. MoodMeter is a wellbeing tool, not a substitute for professional medical or mental health advice — but as a companion for everyday self-awareness, it's designed to be honest, low-pressure, and genuinely useful.</p>
+          <p>Start today by picking the mood that matches how you feel right now. Your future self — flipping back through a calendar full of honest, colorful little check-ins — will thank you for it.</p>
+        </div>
+        <div class="text-center mt-6">
+          <button id="seo-read-more-btn" class="read-more-btn">Read More ↓</button>
+        </div>
+      </article>
+
+      <!-- 3. FAQ Accordion -->
+      <section id="faq" class="glass rounded-2xl p-6 md:p-8 mt-16">
+        <h2 class="display text-3xl font-semibold mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-0">
+          <details class="faq-details">
+            <summary>What is MoodMeter?</summary>
+            <div class="faq-answer">MoodMeter is a free web app that helps you track your daily moods, keep a mood journal, view your mood calendar and analytics, and share anonymously with a supportive community.</div>
+          </details>
+          <details class="faq-details">
+            <summary>How does Mood Tracking work?</summary>
+            <div class="faq-answer">Simply tap one of the six moods (Happy, Sad, Angry, Calm, Stressed, Neutral) that best matches how you feel right now. You can add an optional journal note and choose whether to keep it private or share it publicly.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Is my mood private?</summary>
+            <div class="faq-answer">Absolutely. Every entry is private by default. You decide whether to share it publicly or keep it completely to yourself. Even when sharing, you can post anonymously.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Can I post anonymously?</summary>
+            <div class="faq-answer">Yes. Toggle the “Post anonymously” switch before locking your mood, and your name won’t appear on the community feed — only the mood and note (if any) are shown.</div>
+          </details>
+          <details class="faq-details">
+            <summary>How do mood statistics work?</summary>
+            <div class="faq-answer">The Vibe Monitor tab gives you detailed personal and community‑wide breakdowns. You can view your own monthly/yearly mood distributions, global daily stats, and a rolling weekly community trend chart.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Can I delete my entries?</summary>
+            <div class="faq-answer">Yes. From your Timeline in the My Sanctuary tab you can open any past entry and remove it, or update today’s mood at any time.</div>
+          </details>
+          <details class="faq-details">
+            <summary>How does the mood calendar work?</summary>
+            <div class="faq-answer">Your Mood Calendar shows a colour‑coded view of every day you logged a mood. Tap any day to see the entry details. It helps you spot patterns over weeks and months.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Is MoodMeter free?</summary>
+            <div class="faq-answer">Yes, completely free. There are no premium tiers, no in‑app purchases — just a free tool built to support emotional wellness.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Is my data secure?</summary>
+            <div class="faq-answer">Your data is stored securely using Firebase (Google Cloud). We do not sell or share your personal information. Read our full Privacy Policy below for more details.</div>
+          </details>
+          <details class="faq-details">
+            <summary>Why should I track my mood daily?</summary>
+            <div class="faq-answer">Daily tracking builds emotional awareness. Over time you’ll notice patterns, celebrate good stretches, and recognise when you might need extra support. Small check‑ins lead to big insights.</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 4. About MoodMeter -->
+      <section id="about-moodmeter" class="glass rounded-2xl p-6 md:p-8 mt-16 text-center">
+        <h2 class="display text-3xl font-semibold mb-6">About MoodMeter</h2>
+        <p class="text-white/70 max-w-3xl mx-auto leading-relaxed">
+          MoodMeter was born from the belief that understanding our emotions shouldn't be complicated. Our mission is to make daily mood tracking as effortless as taking a deep breath — a small, private ritual that anyone can build into their day. We combine a simple mood journal, rich personal analytics, and a supportive community where people can share anonymously and lift each other up. MoodMeter is not a therapy replacement; it's a companion for everyday emotional wellness, designed to be honest, low‑pressure, and always free. Whether you're logging a tough day or celebrating a good one, you're welcome here.
+        </p>
+      </section>
+
+      <!-- 5. Privacy Policy Summary -->
+      <section id="privacy-policy" class="glass rounded-2xl p-6 md:p-8 mt-16">
+        <h2 class="display text-3xl font-semibold mb-6">Privacy Policy</h2>
+        <div id="privacy-summary">
+          <p class="text-white/70 leading-relaxed mb-4">
+            Your privacy is at the heart of MoodMeter. We do not sell, rent, or share your personal data with third‑party advertisers. All mood logs, journal entries, and profile information are stored securely on Google Firebase and are only accessible to you — unless you choose to share them publicly. Anonymous posts truly hide your identity; we never link them back to your account. We use industry‑standard encryption and follow strict data‑protection practices. By using MoodMeter you trust us with your emotional journey, and we honour that trust every single day.
+          </p>
+        </div>
+        <div class="expanded-content" id="privacy-full">
+          <div class="text-white/70 leading-relaxed space-y-3 pt-2">
+            <p><strong>1. Information We Collect:</strong> When you create an account we store your email address and display name. Mood entries, notes, and reactions are stored in our database. If you choose to share anonymously, your identity is not attached to the public post.</p>
+            <p><strong>2. How We Use Your Data:</strong> We use your data solely to provide the MoodMeter service — displaying your own history, community feed, and analytics. We do not process your data for any other purpose.</p>
+            <p><strong>3. Data Sharing:</strong> We never sell your data. Public posts (including anonymous ones) are visible to other users, but private data remains strictly with you.</p>
+            <p><strong>4. Security:</strong> All data is stored on Firebase (Google Cloud) with encryption at rest and in transit. We follow best practices to protect your information.</p>
+            <p><strong>5. Your Rights:</strong> You can delete your account or any entry at any time. Contact us for data removal requests.</p>
+            <p><strong>6. Contact:</strong> If you have questions about this policy, reach out via the contact link in the footer.</p>
+          </div>
+        </div>
+        <div class="text-center mt-6">
+          <button id="privacy-read-more-btn" class="read-more-btn">Read More ↓</button>
+        </div>
+      </section>
+
+      <!-- 6. Terms & Conditions Summary -->
+      <section id="terms-conditions" class="glass rounded-2xl p-6 md:p-8 mt-16">
+        <h2 class="display text-3xl font-semibold mb-6">Terms & Conditions</h2>
+        <div id="terms-summary">
+          <p class="text-white/70 leading-relaxed mb-4">
+            MoodMeter is a wellbeing tool, not a substitute for professional medical advice, diagnosis, or treatment. By using the app you agree to be respectful in community interactions, not to misuse anonymity to harass others, and to understand that all shared content may be visible to other members. We reserve the right to remove content that violates our guidelines. Your continued use of MoodMeter constitutes acceptance of these terms.
+          </p>
+        </div>
+        <div class="expanded-content" id="terms-full">
+          <div class="text-white/70 leading-relaxed space-y-3 pt-2">
+            <p><strong>1. Acceptance of Terms:</strong> By accessing or using MoodMeter, you agree to be bound by these Terms. If you do not agree, please do not use the service.</p>
+            <p><strong>2. Community Guidelines:</strong> Treat others with kindness. Harassment, hate speech, or abusive behaviour will not be tolerated. You may not post content that is illegal, threatening, or infringes on others' rights.</p>
+            <p><strong>3. Anonymity:</strong> While we offer anonymous posting, you are still responsible for the content you share. We may take action if content violates our guidelines, regardless of anonymity.</p>
+            <p><strong>4. Medical Disclaimer:</strong> MoodMeter is not a healthcare provider. It does not offer medical advice and is not intended to diagnose, treat, cure, or prevent any condition. Always seek the advice of a qualified professional.</p>
+            <p><strong>5. Limitation of Liability:</strong> MoodMeter is provided "as is". We are not liable for any damages arising from your use of the service.</p>
+            <p><strong>6. Changes to Terms:</strong> We may update these terms occasionally. Continued use after changes means you accept the new terms.</p>
+          </div>
+        </div>
+        <div class="text-center mt-6">
+          <button id="terms-read-more-btn" class="read-more-btn">Read More ↓</button>
+        </div>
+      </section>
+
+      <!-- 7. Professional Footer -->
+      <footer class="mt-20 pt-12 border-t border-white/10">
+        <div class="flex flex-col md:flex-row justify-between gap-10 mb-10">
+          <div class="max-w-xs">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200 to-sky-300 flex items-center justify-center text-xl">🌗</div>
+              <span class="display text-2xl font-semibold">MoodMeter</span>
+            </div>
+            <p class="text-sm text-white/50 leading-relaxed">Your daily mood tracker and emotional wellness companion. Log, reflect, share, and grow — all in one gentle space.</p>
+          </div>
+
+          <div class="flex flex-wrap gap-10">
+            <div>
+              <h4 class="font-semibold mb-3 text-white/80">Quick Links</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#why-use-moodmeter" class="footer-link">Features</a></li>
+                <li><a href="#seo-article" class="footer-link">What is MoodMeter?</a></li>
+                <li><a href="#faq" class="footer-link">FAQ</a></li>
+                <li><a href="#about-moodmeter" class="footer-link">About</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3 text-white/80">Legal</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#privacy-policy" class="footer-link">Privacy Policy</a></li>
+                <li><a href="#terms-conditions" class="footer-link">Terms & Conditions</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3 text-white/80">Contact</h4>
+              <ul class="space-y-2 text-sm">
+                <li><span class="text-white/50">hello@moodmeterapp.com</span></li>
+                <li><span class="text-white/50">Based worldwide 🌍</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-white/10 text-sm text-white/40">
+          <p>&copy; <span id="footerYear">2026</span> MoodMeter. All rights reserved.</p>
+          <div class="flex gap-3">
+            <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-icon" aria-label="Facebook">f</a>
+            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ===================== FEED VIEW ===================== -->
+    <section id="view-feed" class="hidden">
+      <div class="flex flex-col gap-3 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h1 class="display text-3xl font-semibold mb-1">Feed</h1>
+            <p class="text-white/50 text-sm">Real, live moods from real people — last 24 hours.</p>
+          </div>
+        </div>
+
+        <div class="flex bg-white/5 rounded-xl p-1 w-fit" id="feedSubTabs">
+          <button data-subtab="recent" class="subtab-btn active text-xs font-medium px-4 py-2 rounded-lg transition">Feed 🌍</button>
+          <button data-subtab="trending" class="subtab-btn text-xs font-medium px-4 py-2 rounded-lg transition">Trending 🔥</button>
+        </div>
+
+        <div class="flex flex-wrap gap-2 items-center" id="feedControlsRow">
+          <div class="flex bg-white/5 rounded-xl p-1">
+            <button data-scope="all" class="scope-btn active text-xs font-medium px-4 py-2 rounded-lg transition">All Posts</button>
+            <button data-scope="mine" class="scope-btn text-xs font-medium px-4 py-2 rounded-lg transition">My Posts 📝</button>
+          </div>
+          <select id="feedFilter" class="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none">
+            <option value="all" />All Moods
+            <option value="happy" />😊 Happy Only
+            <option value="sad" />😔 Sad Only
+            <option value="angry" />😡 Angry Only
+            <option value="stressed" />😫 Stressed Only
+            <option value="calm" />😌 Calm Only
+            <option value="neutral" />😐 Neutral Only
+          </select>
+          <select id="feedSort" class="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none">
+            <option value="recent" />Most Recent
+            <option value="loved" />Most Loved
+          </select>
+        </div>
+      </div>
+
+      <div id="feedList" class="space-y-3"></div>
+      <div id="feedEmpty" class="hidden text-center text-white/40 py-16">No posts yet for this filter. Be the first to share 🌱</div>
+      <button id="loadMoreBtn" class="hidden w-full mt-3 py-3 rounded-xl bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition active:scale-95 flex items-center justify-center gap-2">
+        <span id="loadMoreSpinner" class="hidden w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full spin"></span>
+        <span id="loadMoreLabel">Load More 🔽</span>
+      </button>
+
+      <div id="trendingGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+    </section>
+
+    <!-- ===================== MESSAGES VIEW ===================== -->
+    <section id="view-messages" class="hidden">
+      <h1 class="display text-3xl font-semibold mb-1">Messages ✉️</h1>
+      <p class="text-white/50 text-sm mb-6">Your private conversations and incoming requests.</p>
+
+      <div class="flex bg-white/5 rounded-xl p-1 w-fit mb-6" id="msgSubTabs">
+        <button data-msgsub="active" class="msgsub-btn active text-xs font-medium px-4 py-2 rounded-lg transition">Active Chats</button>
+        <button data-msgsub="requests" class="msgsub-btn text-xs font-medium px-4 py-2 rounded-lg transition flex items-center gap-1.5">Message Requests 📨 <span id="reqCountPill" class="hidden nav-badge">0</span></button>
+      </div>
+
+      <div id="activeChatsList" class="space-y-2"></div>
+      <div id="requestsList" class="hidden space-y-2"></div>
+      <div id="messagesEmpty" class="hidden text-center text-white/40 py-16">Nothing here yet. Follow or message someone from the Feed to get started 💌</div>
+    </section>
+
+    <!-- ===================== ANALYTICS VIEW (VIBE MONITOR — REDESIGNED) ===================== -->
+    <section id="view-analytics" class="hidden">
+
+      <!-- ============ BLOCK A: GLOBAL DAILY MOOD HISTORICAL HUB ============ -->
+      <div class="mb-4">
+        <h1 class="display text-3xl font-semibold mb-1">🌐 Global Daily Mood Tracker</h1>
+        <p class="text-white/50 text-sm">Pick any date to see exactly how the whole community felt that day.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="flex bg-white/5 rounded-xl p-1" id="globalModeTabs">
+              <button data-mode="daily" class="mode-btn active text-xs font-medium px-4 py-2 rounded-lg transition">Daily</button>
+              <button data-mode="monthly" class="mode-btn text-xs font-medium px-4 py-2 rounded-lg transition">Monthly</button>
+            </div>
+            <label class="text-xs text-white/50" for="globalDatePicker" id="globalDatePickerLabel">Viewing date</label>
+            <input type="date" id="globalDatePicker" class="picker-field" />
+            <input type="month" id="globalMonthPicker" class="picker-field hidden" />
+            <button id="globalDateTodayBtn" class="text-xs px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition">Today</button>
+          </div>
+          <div id="globalDateLoading" class="hidden text-xs text-white/40 flex items-center gap-2">
+            <span class="w-3 h-3 border-2 border-white/30 border-t-white rounded-full spin"></span> Loading…
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div class="donut-wrap w-full flex items-center justify-center" id="globalDonutWrap"></div>
+          <div>
+            <h4 class="text-sm font-semibold text-white/80 mb-3" id="globalDayHeading">Today's Global Vibe Share</h4>
+            <div class="space-y-3" id="globalDayBars"></div>
+            <div id="globalDayEmpty" class="hidden text-sm text-white/30 text-center py-6">No public entries logged on this date yet.</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 mt-6 pt-6 border-t border-white/10 flex-wrap">
+          <span class="text-xs text-white/40 mr-1">Share Daily Global Vibe 📢</span>
+          <button id="shareDailyWhatsapp" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#25D366]/15 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/25 transition">🟢 WhatsApp</button>
+          <button id="shareDailyFacebook" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#1877F2]/15 text-[#7DAAFF] border border-[#1877F2]/30 hover:bg-[#1877F2]/25 transition">🔵 Facebook</button>
+          <button id="shareDailyX" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">⚫ X (Twitter)</button>
+          <button id="shareDailyCopy" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#E4405F]/15 text-[#FF7A93] border border-[#E4405F]/30 hover:bg-[#E4405F]/25 transition">🟣 Copy Link</button>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-8">
+        <h3 class="display font-semibold mb-4">Weekly Mood Trend — Community Wide</h3>
+        <div class="flex items-end justify-between gap-2 h-40" id="weeklyChart"></div>
+        <div class="flex justify-between text-xs text-white/30 mt-2" id="weeklyLabels"></div>
+      </div>
+
+      <div class="flex items-center gap-3 my-8">
+        <div class="h-px bg-white/10 flex-1"></div><span class="text-xs text-white/30">•</span><div class="h-px bg-white/10 flex-1"></div>
+      </div>
+
+      <!-- ============ BLOCK B: MY HISTORICAL PERSONAL SANCTUARY ============ -->
+      <div class="mb-4">
+        <h1 class="display text-3xl font-semibold mb-1">👤 My Historical Personal Sanctuary</h1>
+        <p class="text-white/50 text-sm">Dig into any month or year of your own mood history.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="display font-semibold" id="monthlyReportTitle">Monthly Archive Lookup</h3>
+          <div class="flex items-center gap-2 flex-wrap">
+            <select id="myMonthSelect" class="picker-field"></select>
+            <select id="myMonthYearSelect" class="picker-field"></select>
+          </div>
+        </div>
+        <div class="space-y-2 mb-2" id="myMonthlyBars"></div>
+        <div class="flex items-center gap-2 mt-5 pt-5 border-t border-white/10 flex-wrap">
+          <span class="text-xs text-white/40 mr-1">Share My Monthly Report 📊</span>
+          <button id="shareMonthlyWhatsapp" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#25D366]/15 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/25 transition">🟢 WhatsApp</button>
+          <button id="shareMonthlyFacebook" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#1877F2]/15 text-[#7DAAFF] border border-[#1877F2]/30 hover:bg-[#1877F2]/25 transition">🔵 Facebook</button>
+          <button id="shareMonthlyX" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">⚫ X (Twitter)</button>
+          <button id="shareMonthlyCopy" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#E4405F]/15 text-[#FF7A93] border border-[#E4405F]/30 hover:bg-[#E4405F]/25 transition">🟣 Copy Link</button>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-8">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <h3 class="display font-semibold" id="yearlyReportTitle">Yearly Legacy Overview</h3>
+          <select id="myYearSelect" class="picker-field"></select>
+        </div>
+        <div class="space-y-2 mb-2" id="myYearlyBars"></div>
+        <div class="flex items-center gap-2 mt-5 pt-5 border-t border-white/10 flex-wrap">
+          <span class="text-xs text-white/40 mr-1">Share My Yearly Legacy Report 🏆</span>
+          <button id="shareYearlyWhatsapp" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#25D366]/15 text-[#25D366] border border-[#25D366]/30 hover:bg-[#25D366]/25 transition">🟢 WhatsApp</button>
+          <button id="shareYearlyFacebook" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#1877F2]/15 text-[#7DAAFF] border border-[#1877F2]/30 hover:bg-[#1877F2]/25 transition">🔵 Facebook</button>
+          <button id="shareYearlyX" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 transition">⚫ X (Twitter)</button>
+          <button id="shareYearlyCopy" class="share-btn flex items-center gap-2 text-xs font-medium px-4 py-2.5 rounded-xl bg-[#E4405F]/15 text-[#FF7A93] border border-[#E4405F]/30 hover:bg-[#E4405F]/25 transition">🟣 Copy Link</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROFILE VIEW ===================== -->
+    <section id="view-profile" class="hidden">
+      <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
+        <h1 class="display text-3xl font-semibold">My Personal Sanctuary</h1>
+        <button id="editNameBtn" class="text-xs px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition">Edit Name ✏️</button>
+      </div>
+      <p class="text-white/50 text-sm mb-8">Your private space to reflect and grow.</p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-8">
+        <div class="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+          <div class="text-4xl mb-2">🔥</div>
+          <div class="display text-3xl font-bold" id="streakCount">0</div>
+          <div class="text-xs text-white/40 mt-1">Day Vibe Streak</div>
+        </div>
+        <div class="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+          <div class="text-4xl mb-2" id="lastMoodEmoji">—</div>
+          <div class="display text-lg font-semibold" id="lastMoodLabel">No entries yet</div>
+          <div class="text-xs text-white/40 mt-1">Last logged mood</div>
+        </div>
+        <div class="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+          <div class="display text-3xl font-bold" id="totalLogs">0</div>
+          <div class="text-xs text-white/40 mt-1">Total Check-ins</div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mb-8">
+        <button id="myFollowersBtn" class="flex-1 glass rounded-2xl p-4 text-center hover:bg-white/10 transition">
+          <div class="display text-xl font-bold" id="myFollowersCount">0</div>
+          <div class="text-xs text-white/40">Followers</div>
+        </button>
+        <button id="myFollowingBtn" class="flex-1 glass rounded-2xl p-4 text-center hover:bg-white/10 transition">
+          <div class="display text-xl font-bold" id="myFollowingCount">0</div>
+          <div class="text-xs text-white/40">Following</div>
+        </button>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="display font-semibold">Mood Calendar</h3>
+          <div class="flex items-center gap-2 text-sm">
+            <button id="calPrev" class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20">‹</button>
+            <span id="calLabel" class="text-white/70 min-w-[110px] text-center"></span>
+            <button id="calNext" class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20">›</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-7 gap-1.5 text-center text-[10px] text-white/30 mb-2">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+        <div class="grid grid-cols-7 gap-1.5" id="calendarGrid"></div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 mb-8">
+        <h3 class="display font-semibold mb-4">My Timeline</h3>
+        <div class="space-y-2 max-h-[420px] overflow-y-auto scroll-thin pr-1" id="myEntriesList"></div>
+      </div>
+
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-2 mb-4"><span class="text-xl">🤖</span><h3 class="display font-semibold">A Little Comfort, Just For You</h3></div>
+        <div id="chatbotBox" class="bg-white/5 rounded-xl p-4 text-sm text-white/80 leading-relaxed min-h-[70px]">Log a mood on the Daily Log tab and I'll say something kind about it.</div>
+        <button id="chatbotRefresh" class="mt-3 text-xs px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition">Give me another thought 💭</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Mobile bottom nav: FIXED, always glued to viewport bottom -->
+<nav id="bottomNav" class="hidden px-2 pt-2" aria-label="Mobile primary navigation" style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom));">
+  <div class="flex justify-around items-center gap-0.5" id="navButtonsMobile">
+    <button data-view="home" class="bottom-tab active flex flex-col items-center gap-0.5 py-2 px-2 rounded-2xl text-[9px] font-semibold flex-1"><span class="bt-pill"></span><span class="bt-icon">🏠</span><span>Log</span></button>
+    <button data-view="feed" class="bottom-tab flex flex-col items-center gap-0.5 py-2 px-2 rounded-2xl text-[9px] font-semibold flex-1"><span class="bt-pill"></span><span class="bt-icon">👥</span><span>Feed</span></button>
+    <button data-view="messages" class="bottom-tab flex flex-col items-center gap-0.5 py-2 px-2 rounded-2xl text-[9px] font-semibold flex-1 relative"><span class="bt-pill"></span><span class="bt-icon">✉️</span><span>Chat</span><span id="msgNavBadgeMobile" class="hidden bt-badge">0</span></button>
+    <button data-view="analytics" class="bottom-tab flex flex-col items-center gap-0.5 py-2 px-2 rounded-2xl text-[9px] font-semibold flex-1"><span class="bt-pill"></span><span class="bt-icon">📊</span><span>Stats</span></button>
+    <button data-view="profile" class="bottom-tab flex flex-col items-center gap-0.5 py-2 px-2 rounded-2xl text-[9px] font-semibold flex-1"><span class="bt-pill"></span><span class="bt-icon">👤</span><span>Me</span></button>
+  </div>
+</nav>
+
+<!-- Entry detail modal -->
+<div id="entryModal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+  <div class="glass rounded-3xl w-full max-w-md p-6 relative" id="entryModalContent"></div>
+</div>
+
+<!-- Public profile modal -->
+<div id="profileModal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+  <div class="glass rounded-3xl w-full max-w-md p-6 relative max-h-[80vh] overflow-y-auto scroll-thin" id="profileModalContent"></div>
+</div>
+
+<!-- ===================== FULL-PAGE CHAT INTERFACE ===================== -->
+<div id="chatFullPage" class="hidden">
+  <div class="glass flex items-center justify-between p-4 border-b border-white/10 flex-shrink-0 gap-2">
+    <div class="flex items-center gap-3 min-w-0">
+      <button id="chatBackBtn" class="text-white/60 hover:text-white text-2xl leading-none flex-shrink-0 active:scale-90 transition">←</button>
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-sm font-bold flex-shrink-0" id="chatHeaderAvatar">?</div>
+      <div class="min-w-0">
+        <div class="text-sm font-semibold truncate" id="chatHeaderName">—</div>
+        <div class="flex items-center gap-1.5 text-[11px]" id="chatHeaderPresenceRow">
+          <span class="chat-online-dot hidden" id="chatHeaderOnlineDot"></span>
+          <span id="chatHeaderPresenceText" class="text-white/40">Checking status…</span>
+        </div>
+      </div>
+    </div>
+    <button id="chatBlockToggleBtn" class="flex-shrink-0 text-xs font-medium px-3 py-1.5 rounded-full border transition whitespace-nowrap">🚫 Block User</button>
+  </div>
+  <div id="chatBanner" class="hidden px-4 py-2 border-b text-[11px] flex-shrink-0"></div>
+  <div id="chatBody" class="flex-1 overflow-y-auto scroll-thin p-4 space-y-3"></div>
+  <form id="chatForm" class="flex gap-2 p-3 pb-[5.5rem] md:pb-3 border-t border-white/10 flex-shrink-0 bg-[#0B0C14]">
+    <input id="chatInput" type="text" maxlength="500" placeholder="Type message" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none" autocomplete="off" />
+    <button type="submit" id="chatSendBtn" class="lock-btn px-5 py-3 rounded-xl text-black text-sm font-semibold active:scale-95 flex-shrink-0">Send</button>
+  </form>
+</div>
+
+<div id="toastContainer" class="fixed bottom-24 md:bottom-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
+
+<footer class="sr-only">
+  <p>MoodMeter — Daily Mood Tracker, Mood Journal and Emotional Wellness Community. &copy; <span id="footerYear">2026</span> MoodMeter.</p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, deleteField, setDoc, increment, getDocs,
+  query, where, orderBy, limit, onSnapshot, serverTimestamp, arrayUnion, arrayRemove, Timestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  signOut, signInAnonymously, updateProfile, sendPasswordResetEmail, browserLocalPersistence, setPersistence
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+/* ---------------- Firebase setup ---------------- */
+const firebaseConfig = {
+  apiKey: "AIzaSyCcz-MSNINV1FAnULMj9yDw0YRhR1ocshs",
+  authDomain: "mood-meter-5c7d8.firebaseapp.com",
+  projectId: "mood-meter-5c7d8",
+  storageBucket: "mood-meter-5c7d8.firebasestorage.app",
+  messagingSenderId: "243996972944",
+  appId: "1:243996972944:web:3805529d37055d4b098515"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence).catch(() => {});
+const moodsCol = collection(db, "moods");
+const followsCol = collection(db, "follows");
+const convsCol = collection(db, "conversations");
+const presenceCol = collection(db, "presence");
+const blocksCol = collection(db, "blocks");
+const DAY_MS = 24 * 60 * 60 * 1000;
+const ONLINE_WINDOW_MS = 5 * 60 * 1000;
+const FEED_PAGE_SIZE = 20;
+// ⏱️ FEATURE 1 CONSTANT: how long a private chat message lives before it
+// must disappear from the UI and be permanently removed from Firestore.
+const MESSAGE_TTL_MS = 7 * DAY_MS;
+
+/* =========================================================================
+   🌍 DYNAMIC UNIVERSAL TIMEZONE SYNC
+   The single source of truth for every "day" key used anywhere in the app
+   (today's log, calendar cells, streaks, weekly chart, global daily
+   tracker, monthly/yearly archives). Detected once from the browser's own
+   runtime, so a user in Karachi, Dubai, London, or New York always sees
+   their OWN local day boundary — never a UTC-shifted one.
+========================================================================= */
+const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+function localDateStr(date = new Date()){
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: userTimeZone, year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(date);
+  const map = {};
+  parts.forEach(p => { map[p.type] = p.value; });
+  return `${map.year}-${map.month}-${map.day}`;
+}
+// Converts a Firestore Timestamp (or any numeric epoch ms) into the same
+// localized YYYY-MM-DD key, for any future read-path that needs to derive
+// a day bucket directly from a stored timestamp rather than the `day` field.
+function timestampToLocalDateStr(timestamp){
+  const ms = (timestamp && typeof timestamp.toMillis === "function") ? timestamp.toMillis() : timestamp;
+  return localDateStr(new Date(ms));
+}
+
+/* ---------------- Constants ---------------- */
+const MOODS = {
+  happy:    { emoji: "😊", label: "Happy",    glow: "251,191,36",  bar: "#FBBF24" },
+  sad:      { emoji: "😔", label: "Sad",      glow: "96,165,250",  bar: "#60A5FA" },
+  angry:    { emoji: "😡", label: "Angry",    glow: "248,113,113", bar: "#F87171" },
+  calm:     { emoji: "😌", label: "Calm",     glow: "52,211,153",  bar: "#34D399" },
+  stressed: { emoji: "😫", label: "Stressed", glow: "192,132,252", bar: "#C084FC" },
+  neutral:  { emoji: "😐", label: "Neutral",  glow: "148,163,184", bar: "#94A3B8" }
+};
+const COMFORT_LINES = {
+  happy:    ["Hold on to this feeling — you earned it.", "Happiness looks good on you. Keep noticing it.", "Let today's good mood be proof better days are possible."],
+  sad:      ["It's okay to not be okay right now. This feeling will move.", "Be as gentle with yourself as you would with a friend.", "Small steps still count as progress."],
+  angry:    ["Your anger is valid — let it inform you, not consume you.", "Take a breath before you decide what happens next.", "It's okay to feel this. You're allowed to want things to be different."],
+  stressed: ["One thing at a time. You don't have to carry it all right now.", "You've handled hard days before — you know how to do this.", "Pause. Breathe. The list will still be there in five minutes."],
+  calm:     ["Savor this stillness — it's yours.", "This calm is a skill you're building, not luck.", "Let this quiet moment recharge you for whatever's next."],
+  neutral:  ["Not every day needs a big feeling — steady is good too.", "An even keel is worth appreciating.", "Sometimes 'fine' is exactly where you need to be."]
+};
+const REACTION_TYPES = [ { key: "heart", icon: "❤️" }, { key: "hug", icon: "🤗" }, { key: "strength", icon: "💪" } ];
+
+/* ---------------- Element cache ---------------- */
+const $ = (id) => document.getElementById(id);
+const els = {
+  splash: $("splash"), authScreen: $("authScreen"), appShell: $("appShell"),
+  loginForm: $("loginForm"), registerForm: $("registerForm"), authError: $("authError"),
+  loginSubmitBtn: $("loginSubmitBtn"), registerSubmitBtn: $("registerSubmitBtn"),
+  userName: $("userName"), userEmail: $("userEmail"), userAvatar: $("userAvatar"), userAvatarMobile: $("userAvatarMobile"),
+  homeGreeting: $("homeGreeting"), connDot: $("connDot"), connDotMobile: $("connDotMobile"), connText: $("connText"),
+  moodGrid: $("moodGrid"), noteInput: $("noteInput"), noteCount: $("noteCount"),
+  privacySwitch: $("privacySwitch"), anonSwitch: $("anonSwitch"),
+  lockMoodBtn: $("lockMoodBtn"), lockBtnLabel: $("lockBtnLabel"), lockBtnSpinner: $("lockBtnSpinner"),
+  successBanner: $("successBanner"), successText: $("successText"), todayNotice: $("todayNotice"),
+  feedList: $("feedList"), feedEmpty: $("feedEmpty"), feedFilter: $("feedFilter"), feedSort: $("feedSort"),
+  feedControlsRow: $("feedControlsRow"), trendingGrid: $("trendingGrid"),
+  loadMoreBtn: $("loadMoreBtn"), loadMoreLabel: $("loadMoreLabel"), loadMoreSpinner: $("loadMoreSpinner"),
+  weeklyChart: $("weeklyChart"), weeklyLabels: $("weeklyLabels"),
+  myMonthlyBars: $("myMonthlyBars"), myYearlyBars: $("myYearlyBars"),
+  monthlyReportTitle: $("monthlyReportTitle"), yearlyReportTitle: $("yearlyReportTitle"),
+  streakCount: $("streakCount"), lastMoodEmoji: $("lastMoodEmoji"), lastMoodLabel: $("lastMoodLabel"), totalLogs: $("totalLogs"),
+  myFollowersBtn: $("myFollowersBtn"), myFollowingBtn: $("myFollowingBtn"), myFollowersCount: $("myFollowersCount"), myFollowingCount: $("myFollowingCount"),
+  calendarGrid: $("calendarGrid"), calLabel: $("calLabel"), calPrev: $("calPrev"), calNext: $("calNext"),
+  myEntriesList: $("myEntriesList"), chatbotBox: $("chatbotBox"),
+  entryModal: $("entryModal"), entryModalContent: $("entryModalContent"),
+  profileModal: $("profileModal"), profileModalContent: $("profileModalContent"),
+  toastContainer: $("toastContainer"), bottomNav: $("bottomNav"),
+  activeChatsList: $("activeChatsList"), requestsList: $("requestsList"), messagesEmpty: $("messagesEmpty"),
+  reqCountPill: $("reqCountPill"), msgNavBadgeDesktop: $("msgNavBadgeDesktop"), msgNavBadgeMobile: $("msgNavBadgeMobile"),
+  globalDatePicker: $("globalDatePicker"), globalDateTodayBtn: $("globalDateTodayBtn"), globalDateLoading: $("globalDateLoading"),
+  globalDonutWrap: $("globalDonutWrap"), globalDayBars: $("globalDayBars"), globalDayEmpty: $("globalDayEmpty"), globalDayHeading: $("globalDayHeading"),
+  globalMonthPicker: $("globalMonthPicker"), globalDatePickerLabel: $("globalDatePickerLabel"),
+  myMonthSelect: $("myMonthSelect"), myMonthYearSelect: $("myMonthYearSelect"), myYearSelect: $("myYearSelect"),
+  chatFullPage: $("chatFullPage"), chatBackBtn: $("chatBackBtn"),
+  chatHeaderAvatar: $("chatHeaderAvatar"), chatHeaderName: $("chatHeaderName"),
+  chatHeaderOnlineDot: $("chatHeaderOnlineDot"), chatHeaderPresenceText: $("chatHeaderPresenceText"),
+  chatBlockToggleBtn: $("chatBlockToggleBtn"), chatBanner: $("chatBanner"),
+  chatBody: $("chatBody"), chatForm: $("chatForm"), chatInput: $("chatInput"), chatSendBtn: $("chatSendBtn")
+};
+
+/* =========================================================================
+   ⚡ SNAPSHOT RENDER DIFFING (perf)
+   Firestore onSnapshot fires on metadata-only changes too. Rebuilding
+   innerHTML every single time forces unnecessary layout/reflow, which is
+   the main source of jank on mobile. This cache skips the DOM write
+   whenever the computed HTML for a given container is byte-identical to
+   what's already rendered.
+========================================================================= */
+const _lastHtmlCache = new WeakMap();
+function setHtmlIfChanged(el, html){
+  if(!el) return false;
+  if(_lastHtmlCache.get(el) === html) return false;
+  _lastHtmlCache.set(el, html);
+  el.innerHTML = html;
+  return true;
+}
+
+/* ===================================================================
+   ABSOLUTE STATE RESET & INITIAL VIEW OVERRIDE (boot-time, synchronous)
+   Runs immediately as the module executes — BEFORE Firebase auth ever
+   resolves — so there is no possible frame where a stale/deep-linked
+   panel (like the full-page chat overlay) can be visible while the
+   rest of the shell is still loading.
+=================================================================== */
+function forceHomeViewLockdown(){
+  ["view-feed", "view-messages", "view-analytics", "view-profile"].forEach(id => {
+    document.getElementById(id)?.classList.add("hidden");
+  });
+  document.getElementById("view-home")?.classList.remove("hidden");
+  const chatPanel = document.getElementById("chatFullPage");
+  if(chatPanel){ chatPanel.classList.add("hidden"); chatPanel.style.display = "none"; }
+  document.getElementById("entryModal")?.classList.add("hidden");
+  document.getElementById("profileModal")?.classList.add("hidden");
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.view === "home");
+    b.classList.toggle("text-white/70", b.dataset.view !== "home");
+  });
+  document.querySelectorAll(".bottom-tab").forEach(b => b.classList.toggle("active", b.dataset.view === "home"));
+}
+forceHomeViewLockdown();
+
+function showToast(msg, type = "info"){
+  const colors = { info: "bg-white/10", success: "bg-emerald-500/20 border-emerald-400/30", error: "bg-red-500/20 border-red-400/30" };
+  const el = document.createElement("div");
+  el.className = `toast glass ${colors[type]||colors.info} rounded-xl px-4 py-3 text-sm max-w-xs shadow-lg`;
+  el.textContent = msg;
+  els.toastContainer.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+function escapeHtml(str){ const div = document.createElement("div"); div.textContent = str; return div.innerHTML; }
+// Single source of truth for "today" — timezone-safe (see block above).
+const todayStr = () => localDateStr(new Date());
+function hexToRgbStr(hex){
+  const h = hex.replace("#","");
+  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+  return `${r},${g},${b}`;
+}
+function getMoodMeta(d){
+  return MOODS[d.mood] || MOODS.calm;
+}
+function formatMsgTime(ts){
+  if(!ts || !ts.toDate) return "sending…";
+  const d = ts.toDate();
+  const now = new Date();
+  const timeStr = d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+  const isToday = d.toDateString() === now.toDateString();
+  if(isToday) return timeStr;
+  const yesterday = new Date(now); yesterday.setDate(now.getDate()-1);
+  const isYesterday = d.toDateString() === yesterday.toDateString();
+  if(isYesterday) return `Yesterday, ${timeStr}`;
+  return `${d.toLocaleDateString(undefined,{month:"short",day:"numeric"})}, ${timeStr}`;
+}
+
+function openModal(html){ els.entryModalContent.innerHTML = html; els.entryModal.classList.remove("hidden"); }
+function closeModal(){ els.entryModal.classList.add("hidden"); }
+els.entryModal.addEventListener("click", (e) => { if(e.target === els.entryModal) closeModal(); });
+els.profileModal.addEventListener("click", (e) => { if(e.target === els.profileModal) els.profileModal.classList.add("hidden"); });
+
+/* ---------------- Firestore-backed blocklist ---------------- */
+let blockedUsers = new Set();
+function isBlocked(uid){ return blockedUsers.has(uid); }
+let blocksUnsub = null;
+function subscribeBlocks(uid){
+  if(blocksUnsub) blocksUnsub();
+  blocksUnsub = onSnapshot(doc(db, "blocks", uid), (snap) => {
+    const data = snap.data();
+    blockedUsers = new Set((data && data.blockedUsers) || []);
+    if(!$("view-messages").classList.contains("hidden")) renderMessagesView();
+    if(!els.chatFullPage.classList.contains("hidden")){ updateChatHeaderBlockBtn(); updateChatBanner(); }
+  }, (err) => console.error(err));
+}
+async function toggleBlockUser(targetId){
+  if(!currentUser || !targetId) return;
+  const blocked = isBlocked(targetId);
+  if(!blocked && !confirm("Block this user? They won't be able to message you and their posts will stay hidden from your chats.")) return;
+  try{
+    await setDoc(doc(db, "blocks", currentUser.uid), {
+      blockedUsers: blocked ? arrayRemove(targetId) : arrayUnion(targetId)
+    }, { merge: true });
+    showToast(blocked ? "User unblocked 🔓 — you can chat again." : "User blocked 🚫", blocked ? "success" : "info");
+  } catch(err){ console.error(err); showToast("Couldn't update block status.", "error"); }
+}
+
+/* ================= AUTH SCREEN LOGIC ================= */
+document.querySelectorAll(".authtab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".authtab-btn").forEach(b => { b.classList.remove("active"); b.classList.add("text-white/60"); });
+    btn.classList.add("active"); btn.classList.remove("text-white/60");
+    const tab = btn.dataset.authtab;
+    els.loginForm.classList.toggle("hidden", tab !== "login");
+    els.registerForm.classList.toggle("hidden", tab !== "register");
+    hideAuthError();
+  });
+});
+function hideAuthError(){ els.authError.classList.add("hidden"); }
+function showAuthError(code){
+  const map = {
+    "auth/invalid-email": "That email address doesn't look right.",
+    "auth/user-not-found": "No account found with that email.",
+    "auth/wrong-password": "Incorrect password. Try again.",
+    "auth/invalid-credential": "Incorrect email or password.",
+    "auth/email-already-in-use": "An account already exists with that email.",
+    "auth/weak-password": "Password should be at least 6 characters.",
+    "auth/too-many-requests": "Too many attempts. Please wait a moment and try again."
+  };
+  els.authError.textContent = map[code] || "Something went wrong. Please try again.";
+  els.authError.classList.remove("hidden");
+}
+els.loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault(); hideAuthError();
+  els.loginSubmitBtn.disabled = true; els.loginSubmitBtn.textContent = "Logging in…";
+  try{ await signInWithEmailAndPassword(auth, $("loginEmail").value.trim(), $("loginPassword").value); }
+  catch(err){ showAuthError(err.code); }
+  els.loginSubmitBtn.disabled = false; els.loginSubmitBtn.textContent = "Log In";
+});
+els.registerForm.addEventListener("submit", async (e) => {
+  e.preventDefault(); hideAuthError();
+  els.registerSubmitBtn.disabled = true; els.registerSubmitBtn.textContent = "Creating account…";
+  try{
+    const cred = await createUserWithEmailAndPassword(auth, $("registerEmail").value.trim(), $("registerPassword").value);
+    await updateProfile(cred.user, { displayName: $("registerName").value.trim() });
+  } catch(err){ showAuthError(err.code); }
+  els.registerSubmitBtn.disabled = false; els.registerSubmitBtn.textContent = "Create Account";
+});
+$("guestBtn").addEventListener("click", async () => { hideAuthError(); try{ await signInAnonymously(auth); } catch(err){ showAuthError(err.code); } });
+$("forgotPasswordBtn").addEventListener("click", async () => {
+  const email = $("loginEmail").value.trim();
+  if(!email){ showAuthError("Enter your email above first, then tap 'Forgot password?'."); return; }
+  try{ await sendPasswordResetEmail(auth, email); showToast("Password reset email sent 📧", "success"); }
+  catch(err){ showAuthError(err.code); }
+});
+$("logoutBtnDesktop").addEventListener("click", () => signOut(auth));
+$("logoutBtnMobile").addEventListener("click", () => signOut(auth));
+
+/* ---------------- State ---------------- */
+let currentUser = null;
+let selectedMood = null;
+let communityDocs = [];
+let feedDocs = [];
+let trendingDocs = [];
+let myDocs = [];
+let followingSet = new Set();
+let usersCache = {};
+let presenceMap = {};
+let heartbeatTimer = null;
+let feedFilterVal = "all";
+let feedSortVal = "recent";
+let feedScope = "all";
+let feedSubTab = "recent";
+let feedLimit = FEED_PAGE_SIZE;
+let hasMoreFeed = false;
+let todayDocId = null;
+let openCommentsFor = new Set();
+let commentUnsubs = {};
+let commentsCache = {};
+let editingComment = null;
+let calViewDate = new Date();
+let currentConvId = null;
+let currentConvTarget = null;
+// Single global handle for the ACTIVE conversation's Firestore listener.
+// There must never be more than one of these alive at a time — every
+// place that opens, closes, or switches away from a conversation is
+// required to unsubscribe the previous one before doing anything else.
+let currentChatUnsubscribe = null;
+let conversations = [];
+let msgSubTab = "active";
+let globalMode = "daily";
+let globalSelectedDate = todayStr();
+let globalSelectedMonth = todayStr().slice(0,7);
+let globalDayDocs = [];
+let myMonthSelVal = new Date().getMonth();
+let myMonthYearSelVal = new Date().getFullYear();
+let myYearSelVal = new Date().getFullYear();
+let chatHeaderTargetName = "Friend";
+
+/* ---------------- Users cache ---------------- */
+function cacheUsersFrom(docsArr){
+  docsArr.forEach(d => { if(d.userId && d.displayName && !d.isAnonymous) usersCache[d.userId] = d.displayName; });
+}
+function nameFor(uid){ return usersCache[uid] || "Member"; }
+
+/* ---------------- Presence ---------------- */
+function isOnline(uid){
+  const t = presenceMap[uid];
+  return !!t && (Date.now() - t) < ONLINE_WINDOW_MS;
+}
+function heartbeat(){
+  if(!currentUser) return;
+  setDoc(doc(db, "presence", currentUser.uid), {
+    lastActive: serverTimestamp(), name: currentUser.displayName || "Friend"
+  }, { merge: true }).catch(() => {});
+}
+function startPresence(){
+  heartbeat();
+  if(heartbeatTimer) clearInterval(heartbeatTimer);
+  heartbeatTimer = setInterval(heartbeat, 25000);
+  document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") heartbeat(); });
+  const presenceQuery = query(presenceCol, orderBy("lastActive","desc"), limit(300));
+  onSnapshot(presenceQuery, (snap) => {
+    presenceMap = {};
+    snap.docs.forEach(d => { presenceMap[d.id] = d.data().lastActive?.toMillis?.() || 0; });
+    if(!els.chatFullPage.classList.contains("hidden")) updateChatHeaderPresence();
+  }, (err) => console.error(err));
+}
+function updateChatHeaderPresence(){
+  if(!currentConvTarget) return;
+  if(isOnline(currentConvTarget)){
+    els.chatHeaderOnlineDot.classList.remove("hidden");
+    els.chatHeaderPresenceText.textContent = "Online";
+    els.chatHeaderPresenceText.className = "text-emerald-400 font-medium";
+  } else {
+    els.chatHeaderOnlineDot.classList.add("hidden");
+    els.chatHeaderPresenceText.textContent = "Offline";
+    els.chatHeaderPresenceText.className = "text-white/40";
+  }
+}
+
+/* ---------------- Auth state observer ---------------- */
+onAuthStateChanged(auth, (user) => {
+  els.splash.classList.add("hidden");
+  if(user){
+    currentUser = user;
+    els.authScreen.classList.add("hidden");
+    els.appShell.classList.remove("hidden");
+    els.bottomNav.classList.remove("hidden");
+    els.bottomNav.classList.add("md:hidden","flex","flex-col");
+
+    // ===== ABSOLUTE STATE RESET on every sign-in / refresh =====
+    currentConvId = null;
+    currentConvTarget = null;
+    closeChatFullPage();
+    forceHomeViewLockdown();
+
+    const name = user.displayName || (user.isAnonymous ? "Guest" : (user.email ? user.email.split("@")[0] : "Friend"));
+    els.userName.textContent = name;
+    els.userEmail.textContent = user.isAnonymous ? "Guest session" : (user.email || "");
+    els.userAvatar.textContent = name.charAt(0).toUpperCase();
+    els.userAvatarMobile.textContent = name.charAt(0).toUpperCase();
+    els.homeGreeting.textContent = `Hey ${name.split(" ")[0]}, how are you really?`;
+    subscribeMyDocs(user.uid);
+    subscribeFollowing(user.uid);
+    subscribeConversations(user.uid);
+    subscribeBlocks(user.uid);
+    refreshMyFollowCounts(user.uid);
+    startPresence();
+    // Landing route strictly defaults to Daily Log on login/refresh
+    switchView('home');
+  } else {
+    currentUser = null;
+    els.appShell.classList.add("hidden");
+    els.bottomNav.classList.add("hidden");
+    els.authScreen.classList.remove("hidden");
+    if(heartbeatTimer){ clearInterval(heartbeatTimer); heartbeatTimer = null; }
+    if(blocksUnsub){ blocksUnsub(); blocksUnsub = null; }
+    blockedUsers = new Set();
+    currentConvId = null;
+    currentConvTarget = null;
+    closeChatFullPage();
+    forceHomeViewLockdown();
+  }
+});
+
+/* ---------------- Nav ---------------- */
+const views = ["home","feed","messages","analytics","profile"];
+function switchView(view){
+  // 🛠️ AUTOMATIC CHAT OVERLAY DISMISSAL ON TAB SWITCH
+  // Every nav button (desktop + mobile) routes through here, so this is
+  // the single choke point that guarantees an open direct-message thread
+  // is torn down the instant any tab is tapped — no stuck overlay, no
+  // leftover Firestore message listener running behind the new view.
+  currentConvId = null;
+  currentConvTarget = null;
+  closeChatFullPage();
+
+  views.forEach(v => $("view-"+v).classList.toggle("hidden", v !== view));
+  document.querySelectorAll(".tab-btn").forEach(b => { b.classList.toggle("active", b.dataset.view === view); b.classList.toggle("text-white/70", b.dataset.view !== view); });
+  document.querySelectorAll(".bottom-tab").forEach(b => b.classList.toggle("active", b.dataset.view === view));
+  $("view-"+view).classList.add("fade-in");
+  if(view === "feed"){ if(feedSubTab === "recent") renderFeed(); else renderTrending(); }
+  if(view === "profile"){ renderProfile(); refreshMyFollowCounts(currentUser.uid); }
+  if(view === "analytics") { initAnalyticsView(); }
+  if(view === "messages") renderMessagesView();
+}
+$("navButtonsDesktop").addEventListener("click", (e) => { const btn = e.target.closest("[data-view]"); if(btn) switchView(btn.dataset.view); });
+$("navButtonsMobile").addEventListener("click", (e) => { const btn = e.target.closest("[data-view]"); if(btn) switchView(btn.dataset.view); });
+
+/* ---------------- Mood grid (Home) — exactly 6 fixed moods ---------------- */
+Object.entries(MOODS).forEach(([key, m]) => {
+  const card = document.createElement("button");
+  card.className = "mood-card glass rounded-2xl py-4 flex flex-col items-center gap-1.5 border border-white/10";
+  card.dataset.mood = key;
+  card.innerHTML = `<span class="text-2xl md:text-3xl">${m.emoji}</span><span class="text-[11px] md:text-xs text-white/70">${m.label}</span>`;
+  card.addEventListener("click", () => selectMood(key));
+  els.moodGrid.appendChild(card);
+});
+
+function selectMood(key){
+  selectedMood = key;
+  document.querySelectorAll(".mood-card").forEach(c => c.classList.toggle("selected", c.dataset.mood === key));
+  const m = MOODS[key];
+  $("glowField").style.setProperty("--glow", m.glow);
+  els.lockMoodBtn.disabled = false;
+  if(todayDocId){
+    els.lockBtnLabel.textContent = `Update My Mood ${m.label}`;
+  } else {
+    els.lockBtnLabel.textContent = `Lock My Mood ${m.label}`;
+  }
+}
+
+function wireSwitch(id){ const el = $(id); el.addEventListener("click", () => el.classList.toggle("on")); }
+wireSwitch("privacySwitch"); wireSwitch("anonSwitch");
+els.noteInput.addEventListener("input", (e) => { els.noteCount.textContent = e.target.value.length; });
+
+/* ---------------- Lock / Update My Mood -> Firestore ---------------- */
+els.lockMoodBtn.addEventListener("click", async () => {
+  if(!selectedMood || !currentUser) return;
+  const originalLabel = els.lockBtnLabel.textContent;
+  els.lockMoodBtn.disabled = true;
+  els.lockBtnSpinner.classList.remove("hidden");
+  els.lockBtnLabel.textContent = "Saving…";
+
+  const note = els.noteInput.value.trim().slice(0,240);
+  const isPublic = els.privacySwitch.classList.contains("on");
+  const isAnon = els.anonSwitch.classList.contains("on");
+
+  const payload = {
+    mood: selectedMood, note, isPublic, isAnonymous: isAnon,
+    userId: currentUser.uid, displayName: currentUser.displayName || "Friend",
+    timestamp: serverTimestamp(), day: todayStr()
+  };
+
+  try{
+    if(todayDocId){
+      await updateDoc(doc(db, "moods", todayDocId), payload);
+      els.successText.textContent = "Today's mood updated. Thanks for checking back in. 💫";
+    } else {
+      const ref = await addDoc(moodsCol, { ...payload, reactionsMeta: { heart:{}, hug:{}, strength:{} }, commentsCount: 0 });
+      todayDocId = ref.id;
+      els.successText.textContent = "Mood locked in. Thanks for checking in with yourself today.";
+    }
+    els.successBanner.classList.remove("hidden");
+    setTimeout(() => els.successBanner.classList.add("hidden"), 4000);
+    showToast("Saved ✅", "success");
+    els.noteInput.value = ""; els.noteCount.textContent = "0";
+    updateTodayNotice();
+  } catch(err){
+    console.error(err);
+    showToast("Couldn't save — check your connection or Firestore rules.", "error");
+  }
+  els.lockBtnSpinner.classList.add("hidden");
+  els.lockBtnLabel.textContent = originalLabel;
+  els.lockMoodBtn.disabled = false;
+});
+
+function updateTodayNotice(){
+  const todayEntry = myDocs.find(d => d.day === todayStr());
+  if(todayEntry){
+    todayDocId = todayEntry.id;
+    const meta = getMoodMeta(todayEntry);
+    els.todayNotice.classList.remove("hidden");
+    els.todayNotice.innerHTML = `<span>${meta.emoji}</span><span>You already logged <strong>${meta.label}</strong> today — selecting a mood below will update it.</span>`;
+  } else {
+    todayDocId = null;
+    els.todayNotice.classList.add("hidden");
+  }
+}
+
+/* ================= Community feed ================= */
+const communityQuery = query(moodsCol, orderBy("timestamp","desc"), limit(300));
+onSnapshot(communityQuery, (snap) => {
+  communityDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  cacheUsersFrom(communityDocs);
+  [els.connDot, els.connDotMobile].forEach(dot => { dot.classList.remove("spin","bg-yellow-400"); dot.classList.add("bg-emerald-400"); });
+  els.connText.textContent = "Live — connected";
+  renderWeeklyChart(communityDocs.filter(d => d.isPublic !== false));
+  if(globalMode === "daily" && globalSelectedDate === todayStr()) loadGlobalDayFromCache();
+}, (err) => {
+  console.error(err);
+  [els.connDot, els.connDotMobile].forEach(dot => { dot.classList.remove("spin"); dot.classList.add("bg-red-400"); });
+  els.connText.textContent = "Connection issue — check Firestore rules";
+  showToast("Live connection issue. Check Firestore rules/network.", "error");
+});
+
+/* ================= 24h Feed ================= */
+let feedUnsub = null;
+function subscribeFeedRecent(){
+  if(feedUnsub) feedUnsub();
+  els.loadMoreSpinner.classList.remove("hidden");
+  els.loadMoreLabel.textContent = "Loading…";
+  const cutoff = new Date(Date.now() - DAY_MS);
+  const q = query(moodsCol, where("timestamp", ">=", cutoff), orderBy("timestamp","desc"), limit(feedLimit));
+  feedUnsub = onSnapshot(q, (snap) => {
+    feedDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    cacheUsersFrom(feedDocs);
+    hasMoreFeed = feedDocs.length === feedLimit;
+    els.loadMoreSpinner.classList.add("hidden");
+    els.loadMoreLabel.textContent = "Load More 🔽";
+    if(feedSubTab === "recent") renderFeed();
+  }, (err) => {
+    console.error(err);
+    els.loadMoreSpinner.classList.add("hidden");
+    els.loadMoreLabel.textContent = "Load More 🔽";
+    showToast("Couldn't load the feed. Check Firestore rules/network.", "error");
+  });
+}
+subscribeFeedRecent();
+
+$("loadMoreBtn").addEventListener("click", () => {
+  feedLimit += FEED_PAGE_SIZE;
+  subscribeFeedRecent();
+});
+
+/* ================= Trending ================= */
+const trendingCutoff = new Date(Date.now() - DAY_MS);
+const trendingQuery = query(moodsCol, where("timestamp", ">=", trendingCutoff), orderBy("timestamp","desc"), limit(200));
+onSnapshot(trendingQuery, (snap) => {
+  trendingDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  cacheUsersFrom(trendingDocs);
+  if(feedSubTab === "trending") renderTrending();
+}, (err) => console.error(err));
+
+function engagementScore(d){
+  const reactions = reactionCount(d,"heart") + reactionCount(d,"hug") + reactionCount(d,"strength");
+  const comments = d.commentsCount || 0;
+  return reactions + comments;
+}
+
+/* ---------------- Firestore: this user's own docs ---------------- */
+let myDocsUnsub = null;
+function subscribeMyDocs(uid){
+  if(myDocsUnsub) myDocsUnsub();
+  const myQuery = query(moodsCol, where("userId","==", uid), limit(400));
+  myDocsUnsub = onSnapshot(myQuery, (snap) => {
+    myDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .sort((a,b) => (b.timestamp?.toMillis?.()||0) - (a.timestamp?.toMillis?.()||0));
+    cacheUsersFrom(myDocs);
+    updateTodayNotice();
+    if(!$("view-profile").classList.contains("hidden")) renderProfile();
+    if(!$("view-analytics").classList.contains("hidden")){ renderMyMonthlyBreakdown(); renderMyYearlyBreakdown(); }
+    if(feedScope === "mine" && !$("view-feed").classList.contains("hidden") && feedSubTab === "recent") renderFeed();
+  }, (err) => console.error(err));
+}
+
+/* ---------------- Follow relationships ---------------- */
+let followingUnsub = null;
+function subscribeFollowing(uid){
+  if(followingUnsub) followingUnsub();
+  const q = query(followsCol, where("followerId","==", uid));
+  followingUnsub = onSnapshot(q, (snap) => {
+    followingSet = new Set(snap.docs.map(d => d.data().followingId));
+    if(!$("view-feed").classList.contains("hidden")){
+      if(feedSubTab === "recent") renderFeed(); else renderTrending();
+    }
+  }, (err) => console.error(err));
+}
+async function toggleFollow(targetId){
+  if(!currentUser || !targetId || targetId === currentUser.uid) return;
+  const fid = `${currentUser.uid}_${targetId}`;
+  const ref = doc(db, "follows", fid);
+  const wasFollowing = followingSet.has(targetId);
+  try{
+    if(wasFollowing){
+      await deleteDoc(ref);
+      showToast("Unfollowed", "info");
+    } else {
+      await setDoc(ref, { followerId: currentUser.uid, followingId: targetId, timestamp: serverTimestamp() });
+      showToast("Following ✅", "success");
+    }
+    refreshMyFollowCounts(currentUser.uid);
+  } catch(err){ console.error(err); showToast("Couldn't update follow status.", "error"); }
+}
+async function refreshMyFollowCounts(uid){
+  try{
+    const [followersSnap, followingSnap] = await Promise.all([
+      getDocs(query(followsCol, where("followingId","==", uid))),
+      getDocs(query(followsCol, where("followerId","==", uid)))
+    ]);
+    els.myFollowersCount.textContent = followersSnap.size;
+    els.myFollowingCount.textContent = followingSnap.size;
+  } catch(err){ console.error(err); }
+}
+els.myFollowersBtn.addEventListener("click", () => openFollowListModal(currentUser.uid, "followers", "My Followers"));
+els.myFollowingBtn.addEventListener("click", () => openFollowListModal(currentUser.uid, "following", "My Following"));
+
+/* ---------------- Public profile modal ---------------- */
+function docsForUser(uid){
+  const map = new Map();
+  [...communityDocs, ...feedDocs, ...trendingDocs, ...myDocs].forEach(d => { if(d.userId === uid) map.set(d.id, d); });
+  return [...map.values()];
+}
+function streakFromDocs(docsArr){
+  const daySet = new Set(docsArr.map(d => d.day).filter(Boolean));
+  let streak = 0; let d = new Date();
+  while(true){
+    const key = localDateStr(d);
+    if(daySet.has(key)){ streak++; d.setDate(d.getDate()-1); } else break;
+  }
+  return streak;
+}
+async function openProfileModal(uid, fallbackName){
+  if(!uid) return;
+  const name = usersCache[uid] || fallbackName || "Member";
+  els.profileModalContent.innerHTML = `<div class="text-center py-10 text-white/40 text-sm">Loading profile…</div>`;
+  els.profileModal.classList.remove("hidden");
+
+  const docsArr = docsForUser(uid);
+  const streak = streakFromDocs(docsArr);
+  const totalReactions = docsArr.reduce((sum, d) => sum + reactionCount(d,"heart") + reactionCount(d,"hug") + reactionCount(d,"strength"), 0);
+  let followersCount = "—", followingCount = "—";
+  try{
+    const [followersSnap, followingSnap] = await Promise.all([
+      getDocs(query(followsCol, where("followingId","==", uid))),
+      getDocs(query(followsCol, where("followerId","==", uid)))
+    ]);
+    followersCount = followersSnap.size; followingCount = followingSnap.size;
+  } catch(err){ console.error(err); }
+
+  const isSelf = currentUser && uid === currentUser.uid;
+  const isFollowing = followingSet.has(uid);
+
+  els.profileModalContent.innerHTML = `
+    <button class="absolute top-4 right-4 text-white/40 hover:text-white text-lg" onclick="document.getElementById('profileModal').classList.add('hidden')">✕</button>
+    <div class="text-center mb-5">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-2xl font-bold mx-auto mb-3">${name.charAt(0).toUpperCase()}</div>
+      <div class="display text-xl font-semibold">${escapeHtml(name)}</div>
+      <div class="text-xs text-white/40 mt-1">MoodMeter Member</div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <div class="glass rounded-xl p-4 text-center"><div class="text-2xl mb-1">🔥</div><div class="display text-xl font-bold">${streak}</div><div class="text-[11px] text-white/40">Day Streak</div></div>
+      <div class="glass rounded-xl p-4 text-center"><div class="text-2xl mb-1">❤️</div><div class="display text-xl font-bold">${totalReactions}</div><div class="text-[11px] text-white/40">Reactions Received</div></div>
+    </div>
+    <div class="flex gap-3 mb-5">
+      <button class="followersListBtn flex-1 glass rounded-xl p-3 text-center hover:bg-white/10 transition" data-uid="${uid}"><div class="display text-lg font-bold">${followersCount}</div><div class="text-[11px] text-white/40">Followers</div></button>
+      <button class="followingListBtn flex-1 glass rounded-xl p-3 text-center hover:bg-white/10 transition" data-uid="${uid}"><div class="display text-lg font-bold">${followingCount}</div><div class="text-[11px] text-white/40">Following</div></button>
+    </div>
+    ${!isSelf && currentUser ? `<div class="flex gap-2">
+      <button class="modalFollowBtn flex-1 py-2.5 rounded-xl text-sm font-medium transition ${isFollowing ? "bg-white/20" : "lock-btn text-black"}" data-uid="${uid}" data-name="${escapeHtml(name)}">${isFollowing ? "Following ✓" : "Follow +"}</button>
+      <button class="modalMsgBtn flex-1 py-2.5 rounded-xl text-sm font-medium bg-white/10 hover:bg-white/20 transition" data-uid="${uid}" data-name="${escapeHtml(name)}">Message ✉️</button>
+    </div>` : ""}
+  `;
+}
+els.profileModalContent.addEventListener("click", (e) => {
+  const followBtn = e.target.closest(".modalFollowBtn");
+  if(followBtn){ toggleFollow(followBtn.dataset.uid).then(() => openProfileModal(followBtn.dataset.uid, followBtn.dataset.name)); return; }
+  const msgBtn = e.target.closest(".modalMsgBtn");
+  if(msgBtn){ els.profileModal.classList.add("hidden"); openChatFullPage(msgBtn.dataset.uid, msgBtn.dataset.name); return; }
+  const followersListBtn = e.target.closest(".followersListBtn");
+  if(followersListBtn){ openFollowListModal(followersListBtn.dataset.uid, "followers"); return; }
+  const followingListBtn = e.target.closest(".followingListBtn");
+  if(followingListBtn){ openFollowListModal(followingListBtn.dataset.uid, "following"); return; }
+});
+
+async function openFollowListModal(uid, type, title){
+  els.profileModalContent.innerHTML = `<div class="text-center py-10 text-white/40 text-sm">Loading…</div>`;
+  els.profileModal.classList.remove("hidden");
+  const field = type === "followers" ? "followingId" : "followerId";
+  const otherField = type === "followers" ? "followerId" : "followingId";
+  let rows = [];
+  try{
+    const snap = await getDocs(query(followsCol, where(field, "==", uid)));
+    rows = snap.docs.map(d => d.data()[otherField]);
+  } catch(err){ console.error(err); }
+  els.profileModalContent.innerHTML = `
+    <button class="absolute top-4 right-4 text-white/40 hover:text-white text-lg" onclick="document.getElementById('profileModal').classList.add('hidden')">✕</button>
+    <h3 class="display text-lg font-semibold mb-4">${title || (type === "followers" ? "Followers" : "Following")}</h3>
+    <div class="space-y-2">
+      ${rows.length === 0 ? `<div class="text-sm text-white/30 text-center py-8">Nobody here yet.</div>` :
+        rows.map(otherUid => `
+          <button class="followRowBtn w-full flex items-center gap-3 bg-white/5 hover:bg-white/10 transition rounded-xl px-4 py-2.5" data-uid="${otherUid}">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-xs font-bold">${nameFor(otherUid).charAt(0).toUpperCase()}</div>
+            <span class="text-sm">${escapeHtml(nameFor(otherUid))}</span>
+          </button>`).join("")}
+    </div>`;
+}
+els.profileModalContent.addEventListener("click", (e) => {
+  const rowBtn = e.target.closest(".followRowBtn");
+  if(rowBtn) openProfileModal(rowBtn.dataset.uid);
+});
+
+/* ---------------- Feed sub-tabs ---------------- */
+document.querySelectorAll(".subtab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    feedSubTab = btn.dataset.subtab;
+    const isTrending = feedSubTab === "trending";
+    els.feedControlsRow.classList.toggle("hidden", isTrending);
+    els.feedList.classList.toggle("hidden", isTrending);
+    els.trendingGrid.classList.toggle("hidden", !isTrending);
+    if(isTrending){
+      els.feedEmpty.classList.add("hidden");
+      els.loadMoreBtn.classList.add("hidden");
+      renderTrending();
+    } else {
+      renderFeed();
+    }
+  });
+});
+
+/* ---------------- Feed scope + filter + sort ---------------- */
+document.querySelectorAll(".scope-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".scope-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    feedScope = btn.dataset.scope;
+    renderFeed();
+  });
+});
+els.feedFilter.addEventListener("change", (e) => { feedFilterVal = e.target.value; renderFeed(); });
+els.feedSort.addEventListener("change", (e) => { feedSortVal = e.target.value; renderFeed(); });
+
+function timeAgo(ts){
+  if(!ts || !ts.toDate) return "just now";
+  const diffMs = Date.now() - ts.toDate().getTime();
+  const mins = Math.floor(diffMs/60000);
+  if(mins < 1) return "just now";
+  if(mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins/60);
+  if(hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs/24)}d ago`;
+}
+function reactionCount(d, key){ return Object.keys(d.reactionsMeta?.[key] || {}).length; }
+function userReacted(d, key){ return !!(currentUser && d.reactionsMeta?.[key]?.[currentUser.uid]); }
+function findDocById(id){
+  return myDocs.find(x => x.id === id) || feedDocs.find(x => x.id === id) || trendingDocs.find(x => x.id === id) || communityDocs.find(x => x.id === id);
+}
+
+function nameHtml(d){
+  const name = d.isAnonymous ? "Anonymous" : (d.displayName || "Friend");
+  if(d.isAnonymous || !currentUser) return `<span class="text-sm font-medium">${escapeHtml(name)}</span>`;
+  return `<button class="profileLink text-sm font-medium name-link" data-uid="${d.userId}" data-name="${escapeHtml(name)}">${escapeHtml(name)}</button>`;
+}
+
+function renderFeed(){
+  let source = feedScope === "mine" ? myDocs : feedDocs.filter(d => d.isPublic !== false);
+  let docsArr = source;
+  if(feedFilterVal !== "all") docsArr = docsArr.filter(d => d.mood === feedFilterVal);
+  if(feedSortVal === "loved"){
+    docsArr = [...docsArr].sort((a,b) => (reactionCount(b,"heart")+reactionCount(b,"hug")+reactionCount(b,"strength")) - (reactionCount(a,"heart")+reactionCount(a,"hug")+reactionCount(a,"strength")));
+  }
+
+  if(docsArr.length === 0){
+    setHtmlIfChanged(els.feedList, "");
+    els.feedEmpty.classList.remove("hidden");
+    els.feedEmpty.textContent = feedScope === "mine" ? "You haven't posted anything yet — log a mood to see it here." : "No posts yet for this filter in the last 24 hours. Be the first to share 🌱";
+    els.loadMoreBtn.classList.toggle("hidden", !(feedScope === "all" && hasMoreFeed));
+    return;
+  }
+  els.feedEmpty.classList.add("hidden");
+
+  const cardsHtml = docsArr.map(d => {
+    const m = getMoodMeta(d);
+    const name = d.isAnonymous ? "Anonymous" : (d.displayName || "Friend");
+    const isMine = currentUser && d.userId === currentUser.uid;
+    const canSocialize = currentUser && !isMine && !d.isAnonymous;
+    const isFollowing = followingSet.has(d.userId);
+    const reactionsHtml = REACTION_TYPES.map(r => {
+      const liked = userReacted(d, r.key);
+      const count = reactionCount(d, r.key);
+      return `<button data-id="${d.id}" data-r="${r.key}" class="reactBtn ${liked ? "text-white":"text-white/50"} hover:text-white transition flex items-center gap-1">${r.icon} ${count}</button>`;
+    }).join("");
+    const socialHtml = canSocialize ? `
+      <button data-id="${d.userId}" data-name="${escapeHtml(name)}" class="followBtn text-[11px] px-2.5 py-1 rounded-full border ${isFollowing ? "bg-white/20 border-white/30" : "bg-white/5 border-white/15 hover:bg-white/10"} transition">${isFollowing ? "Following ✓" : "Follow +"}</button>
+      <button data-id="${d.userId}" data-name="${escapeHtml(name)}" class="msgReqBtn text-[11px] px-2.5 py-1 rounded-full border bg-white/5 border-white/15 hover:bg-white/10 transition">Message Request ✉️</button>` : "";
+    const commentsOpen = openCommentsFor.has(d.id);
+    return `<div class="glass rounded-2xl p-4${isMine ? " ring-1 ring-white/20" : ""}">
+      <div class="flex gap-3">
+        <div class="text-2xl">${m.emoji}</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            ${nameHtml(d)}<span class="text-xs text-white/30">${isMine ? "(you) · " : ""}${timeAgo(d.timestamp)}</span>
+          </div>
+          <div class="text-xs text-white/40 mb-1">feeling ${m.label.toLowerCase()} ${d.isPublic === false ? "· 🔒 private" : ""}</div>
+          ${d.note ? `<p class="text-sm text-white/80 break-words mb-2">${escapeHtml(d.note)}</p>` : ""}
+          <div class="flex gap-4 text-xs mb-2 flex-wrap items-center">${reactionsHtml}${socialHtml}</div>
+          <button data-id="${d.id}" class="toggleComments text-xs text-white/40 hover:text-white/70 transition">💬 ${commentsOpen ? "Hide comments" : "View / add comments"} (${d.commentsCount || 0})</button>
+        </div>
+      </div>
+      <div class="commentsWrap mt-3 pl-4 border-l border-white/10 ${commentsOpen ? "" : "hidden"}" data-id="${d.id}">
+        <div class="commentsList space-y-2 mb-3 max-h-64 overflow-y-auto scroll-thin pr-1"></div>
+        <form class="commentForm flex gap-2" data-id="${d.id}">
+          <input type="text" maxlength="200" placeholder="Write a comment…" class="commentInput flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs outline-none">
+          <button type="submit" class="text-xs px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition">Post</button>
+        </form>
+      </div>
+    </div>`;
+  }).join("");
+
+  setHtmlIfChanged(els.feedList, cardsHtml);
+  docsArr.forEach(d => { if(openCommentsFor.has(d.id)) renderComments(d.id); });
+
+  els.loadMoreBtn.classList.toggle("hidden", !(feedScope === "all" && hasMoreFeed));
+}
+
+function renderTrending(){
+  const publicOnes = trendingDocs.filter(d => d.isPublic !== false);
+  const ranked = [...publicOnes].sort((a,b) => engagementScore(b) - engagementScore(a)).slice(0,10);
+  if(ranked.length === 0){
+    setHtmlIfChanged(els.trendingGrid, `<div class="col-span-full text-center text-white/40 py-16">Nothing trending in the last 24 hours yet. Be the spark 🔥</div>`);
+    return;
+  }
+  const html = ranked.map((d, i) => {
+    const m = getMoodMeta(d);
+    const name = d.isAnonymous ? "Anonymous" : (d.displayName || "Friend");
+    const isMine = currentUser && d.userId === currentUser.uid;
+    const canSocialize = currentUser && !isMine && !d.isAnonymous;
+    const isFollowing = followingSet.has(d.userId);
+    const socialHtml = canSocialize ? `
+      <button data-id="${d.userId}" data-name="${escapeHtml(name)}" class="followBtn text-[10px] px-2 py-1 rounded-full border ${isFollowing ? "bg-white/20 border-white/30" : "bg-white/5 border-white/15 hover:bg-white/10"} transition">${isFollowing ? "Following ✓" : "Follow +"}</button>
+      <button data-id="${d.userId}" data-name="${escapeHtml(name)}" class="msgReqBtn text-[10px] px-2 py-1 rounded-full border bg-white/5 border-white/15 hover:bg-white/10 transition">✉️ Message</button>` : "";
+    return `<div class="glass rounded-2xl p-4 relative">
+      <div class="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-gradient-to-br from-amber-200 to-sky-300 text-black text-xs font-bold flex items-center justify-center shadow-lg">#${i+1}</div>
+      <div class="flex items-center gap-2 mb-2"><span class="text-2xl">${m.emoji}</span>${nameHtml(d)}</div>
+      ${d.note ? `<p class="text-xs text-white/70 mb-2 line-clamp-3">${escapeHtml(d.note)}</p>` : `<p class="text-xs text-white/30 mb-2">No note shared.</p>`}
+      <div class="flex items-center justify-between text-xs text-white/40 mb-2"><span>🔥 ${engagementScore(d)} engagement</span><span>${timeAgo(d.timestamp)}</span></div>
+      <div class="flex gap-2 flex-wrap">${socialHtml}</div>
+    </div>`;
+  }).join("");
+  setHtmlIfChanged(els.trendingGrid, html);
+}
+
+els.feedList.addEventListener("click", (e) => handleFeedClick(e));
+els.trendingGrid.addEventListener("click", (e) => handleFeedClick(e));
+
+async function handleFeedClick(e){
+  const profileLink = e.target.closest(".profileLink");
+  if(profileLink){ openProfileModal(profileLink.dataset.uid, profileLink.dataset.name); return; }
+  const reactBtn = e.target.closest(".reactBtn");
+  if(reactBtn){
+    if(!currentUser) return;
+    reactBtn.style.pointerEvents = "none";
+    const targetDoc = findDocById(reactBtn.dataset.id);
+    const already = targetDoc && userReacted(targetDoc, reactBtn.dataset.r);
+    try{
+      const field = `reactionsMeta.${reactBtn.dataset.r}.${currentUser.uid}`;
+      await updateDoc(doc(db, "moods", reactBtn.dataset.id), { [field]: already ? deleteField() : true });
+    } catch(err){ console.error(err); showToast("Couldn't send reaction.", "error"); }
+    reactBtn.style.pointerEvents = "";
+    return;
+  }
+  const followBtn = e.target.closest(".followBtn");
+  if(followBtn){ toggleFollow(followBtn.dataset.id); return; }
+  const msgReqBtn = e.target.closest(".msgReqBtn");
+  if(msgReqBtn){ openChatFullPage(msgReqBtn.dataset.id, msgReqBtn.dataset.name); return; }
+  const toggleBtn = e.target.closest(".toggleComments");
+  if(toggleBtn){
+    const id = toggleBtn.dataset.id;
+    const wrap = els.feedList.querySelector(`.commentsWrap[data-id="${id}"]`);
+    if(!wrap) return;
+    if(openCommentsFor.has(id)){
+      openCommentsFor.delete(id);
+      wrap.classList.add("hidden");
+      const d = findDocById(id);
+      toggleBtn.textContent = `💬 View / add comments (${d?.commentsCount || 0})`;
+      if(commentUnsubs[id]){ commentUnsubs[id](); delete commentUnsubs[id]; }
+    } else {
+      openCommentsFor.add(id);
+      wrap.classList.remove("hidden");
+      const d = findDocById(id);
+      toggleBtn.textContent = `💬 Hide comments (${d?.commentsCount || 0})`;
+      renderComments(id);
+    }
+    return;
+  }
+  const replyBtn = e.target.closest(".replyBtn");
+  if(replyBtn){
+    const form = els.feedList.querySelector(`.commentForm[data-id="${replyBtn.dataset.postid}"]`);
+    const input = form.querySelector(".commentInput");
+    input.value = `@${replyBtn.dataset.handle} `;
+    input.dataset.parentId = replyBtn.dataset.commentid;
+    input.focus();
+    return;
+  }
+  const editBtn = e.target.closest(".editCommentBtn");
+  if(editBtn){
+    editingComment = { postId: editBtn.dataset.postid, commentId: editBtn.dataset.commentid };
+    paintComments(editBtn.dataset.postid);
+    return;
+  }
+  const cancelEditBtn = e.target.closest(".cancelCommentEdit");
+  if(cancelEditBtn){
+    const postId = cancelEditBtn.dataset.postid;
+    editingComment = null;
+    paintComments(postId);
+    return;
+  }
+  const saveEditBtn = e.target.closest(".saveCommentEdit");
+  if(saveEditBtn){
+    const postId = saveEditBtn.dataset.postid;
+    const commentId = saveEditBtn.dataset.commentid;
+    const input = els.feedList.querySelector(`.editCommentInput[data-commentid="${commentId}"]`);
+    const newText = input.value.trim();
+    if(!newText) return;
+    try{
+      await updateDoc(doc(db, "moods", postId, "comments", commentId), { text: newText.slice(0,200), edited: true });
+      editingComment = null;
+      showToast("Comment updated ✅", "success");
+    } catch(err){ console.error(err); showToast("Couldn't update comment.", "error"); }
+    return;
+  }
+  const deleteBtn = e.target.closest(".deleteCommentBtn");
+  if(deleteBtn){
+    if(!confirm("Delete this comment?")) return;
+    try{
+      await deleteDoc(doc(db, "moods", deleteBtn.dataset.postid, "comments", deleteBtn.dataset.commentid));
+      await updateDoc(doc(db, "moods", deleteBtn.dataset.postid), { commentsCount: increment(-1) });
+      showToast("Comment deleted 🗑️", "success");
+    } catch(err){ console.error(err); showToast("Couldn't delete comment.", "error"); }
+    return;
+  }
+}
+
+els.feedList.addEventListener("submit", (e) => handleCommentSubmit(e));
+
+async function handleCommentSubmit(e){
+  const form = e.target.closest(".commentForm");
+  if(!form) return;
+  e.preventDefault();
+  if(!currentUser) return;
+  const input = form.querySelector(".commentInput");
+  const text = input.value.trim();
+  if(!text) return;
+  const postId = form.dataset.id;
+  const parentId = input.dataset.parentId || null;
+  try{
+    const commentsCol = collection(db, "moods", postId, "comments");
+    await addDoc(commentsCol, {
+      text: text.slice(0,200), authorId: currentUser.uid,
+      authorName: currentUser.displayName || (currentUser.isAnonymous ? "Guest" : "Friend"),
+      parentId, timestamp: serverTimestamp()
+    });
+    await updateDoc(doc(db, "moods", postId), { commentsCount: increment(1) });
+    input.value = ""; delete input.dataset.parentId;
+  } catch(err){ console.error(err); showToast("Couldn't post comment.", "error"); }
+}
+
+function renderComments(postId){
+  if(commentUnsubs[postId]) return;
+  const commentsCol = collection(db, "moods", postId, "comments");
+  const cq = query(commentsCol, orderBy("timestamp","asc"), limit(200));
+  commentUnsubs[postId] = onSnapshot(cq, (snap) => {
+    commentsCache[postId] = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    paintComments(postId);
+  }, (err) => console.error(err));
+}
+
+function commentRowHtml(c, postId, indent){
+  const isOwn = currentUser && c.authorId === currentUser.uid;
+  if(editingComment && editingComment.postId === postId && editingComment.commentId === c.id){
+    return `<div class="${indent ? "ml-6" : ""} mt-1.5 flex gap-2 items-center">
+      <input class="editCommentInput flex-1 bg-white/10 rounded px-2 py-1 text-xs outline-none" data-commentid="${c.id}" value="${escapeHtml(c.text)}">
+      <button class="saveCommentEdit text-xs text-emerald-300" data-postid="${postId}" data-commentid="${c.id}">Save</button>
+      <button class="cancelCommentEdit text-xs text-white/40" data-postid="${postId}">Cancel</button>
+    </div>`;
+  }
+  return `<div class="${indent ? "ml-6 mt-1.5" : ""} text-xs">
+    <span class="font-medium">${escapeHtml(c.authorName)}</span>
+    <span class="text-white/70"> ${escapeHtml(c.text)}</span>${c.edited ? ' <span class="text-white/25">(edited)</span>' : ""}
+    ${!indent ? `<button class="replyBtn text-white/30 hover:text-white/60 ml-2" data-postid="${postId}" data-commentid="${c.id}" data-handle="${escapeHtml(c.authorName)}">Reply</button>` : ""}
+    ${isOwn ? `<button class="editCommentBtn text-white/30 hover:text-white/60 ml-2" data-postid="${postId}" data-commentid="${c.id}">✏️ Edit</button>
+    <button class="deleteCommentBtn text-white/30 hover:text-red-300 ml-2" data-postid="${postId}" data-commentid="${c.id}">🗑️ Delete</button>` : ""}
+  </div>`;
+}
+
+function paintComments(postId){
+  const wrap = els.feedList.querySelector(`.commentsWrap[data-id="${postId}"]`);
+  if(!wrap) return;
+  const listEl = wrap.querySelector(".commentsList");
+  const all = commentsCache[postId] || [];
+  const top = all.filter(c => !c.parentId);
+  if(top.length === 0){ setHtmlIfChanged(listEl, `<div class="text-xs text-white/30">No comments yet — be the first to reply.</div>`); return; }
+  const html = top.map(c => {
+    const replies = all.filter(r => r.parentId === c.id);
+    const repliesHtml = replies.map(r => commentRowHtml(r, postId, true)).join("");
+    return commentRowHtml(c, postId, false) + repliesHtml;
+  }).join("");
+  setHtmlIfChanged(listEl, html);
+}
+
+/* ================= Conversations ================= */
+function subscribeConversations(uid){
+  const q = query(convsCol, where("participants", "array-contains", uid), orderBy("updatedAt", "desc"), limit(100));
+  onSnapshot(q, (snap) => {
+    conversations = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(c => c.status !== "declined");
+    updateMessageBadges();
+    if(!$("view-messages").classList.contains("hidden")) renderMessagesView();
+    if(!els.chatFullPage.classList.contains("hidden")) updateChatBanner();
+  }, (err) => console.error(err));
+}
+function updateMessageBadges(){
+  if(!currentUser) return;
+  // Blocked conversations remain included in badge counts (no filter)
+  const allConvs = conversations;
+  const requestsCount = allConvs.filter(c => c.status === "pending" && c.initiator !== currentUser.uid).length;
+  const unreadActiveCount = allConvs.filter(c => c.status === "accepted" && c.unreadFor && c.unreadFor[currentUser.uid]).length;
+  const totalBadge = requestsCount + unreadActiveCount;
+  els.reqCountPill.textContent = requestsCount;
+  els.reqCountPill.classList.toggle("hidden", requestsCount === 0);
+  [els.msgNavBadgeDesktop, els.msgNavBadgeMobile].forEach(b => {
+    b.textContent = totalBadge;
+    b.classList.toggle("hidden", totalBadge === 0);
+  });
+}
+
+document.querySelectorAll(".msgsub-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".msgsub-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    msgSubTab = btn.dataset.msgsub;
+    renderMessagesView();
+  });
+});
+
+function otherParticipant(conv){ return conv.participants.find(p => p !== currentUser.uid); }
+
+function renderMessagesView(){
+  if(!currentUser) return;
+  const isRequests = msgSubTab === "requests";
+  els.activeChatsList.classList.toggle("hidden", isRequests);
+  els.requestsList.classList.toggle("hidden", !isRequests);
+
+  // Blocked conversations are NOT filtered out of the list
+  const all = conversations;
+  const active = all.filter(c => c.status === "accepted" || (c.status === "pending" && c.initiator === currentUser.uid));
+  const requests = all.filter(c => c.status === "pending" && c.initiator !== currentUser.uid);
+
+  if(!isRequests){
+    els.messagesEmpty.classList.toggle("hidden", active.length > 0);
+    const html = active.map(c => {
+      const otherId = otherParticipant(c);
+      const name = nameFor(otherId);
+      const pending = c.status === "pending";
+      const unread = c.unreadFor && c.unreadFor[currentUser.uid];
+      const blocked = isBlocked(otherId);
+      const badgeHtml = blocked ? `<span class="text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full ml-1.5 flex-shrink-0">Blocked 🔒</span>` : "";
+      return `<button class="chatRowBtn w-full flex items-center gap-3 glass rounded-2xl p-4 hover:bg-white/10 transition text-left ${unread ? "ring-1 ring-sky-400/40 bg-sky-400/5" : ""}" data-uid="${otherId}" data-name="${escapeHtml(name)}">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-sm font-bold flex-shrink-0">${name.charAt(0).toUpperCase()}</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-sm font-medium truncate flex items-center gap-1.5">${escapeHtml(name)} ${unread ? `<span class="unread-dot"></span>` : ""} ${badgeHtml}</div>
+          <div class="text-xs text-white/40 truncate">${pending ? "Waiting for reply…" : escapeHtml(c.lastMessage || "Say hello 👋")}</div>
+        </div>
+      </button>`;
+    }).join("");
+    setHtmlIfChanged(els.activeChatsList, html);
+  } else {
+    els.messagesEmpty.classList.toggle("hidden", requests.length > 0);
+    const html = requests.map(c => {
+      const otherId = otherParticipant(c);
+      const name = nameFor(otherId);
+      const blocked = isBlocked(otherId);
+      const badgeHtml = blocked ? `<span class="text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full ml-1.5 flex-shrink-0">Blocked 🔒</span>` : "";
+      return `<div class="glass rounded-2xl p-4 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-300 to-amber-200 flex items-center justify-center text-black text-sm font-bold flex-shrink-0">${name.charAt(0).toUpperCase()}</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-sm font-medium truncate flex items-center gap-1.5">${escapeHtml(name)} ${badgeHtml}</div>
+          <div class="text-xs text-white/40 truncate">${escapeHtml(c.lastMessage || "wants to message you")}</div>
+        </div>
+        <div class="flex gap-2 flex-shrink-0">
+          <button class="acceptReqBtn text-xs px-3 py-1.5 rounded-lg lock-btn text-black font-medium" data-conv="${c.id}">Accept</button>
+          <button class="declineReqBtn text-xs px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition" data-conv="${c.id}">Decline</button>
+        </div>
+      </div>`;
+    }).join("");
+    setHtmlIfChanged(els.requestsList, html);
+  }
+}
+
+els.activeChatsList.addEventListener("click", (e) => {
+  const row = e.target.closest(".chatRowBtn");
+  if(row) openChatFullPage(row.dataset.uid, row.dataset.name);
+});
+els.requestsList.addEventListener("click", async (e) => {
+  const acceptBtn = e.target.closest(".acceptReqBtn");
+  if(acceptBtn){
+    try{ await updateDoc(doc(db, "conversations", acceptBtn.dataset.conv), { status: "accepted", updatedAt: serverTimestamp() }); showToast("Request accepted ✅", "success"); }
+    catch(err){ console.error(err); showToast("Couldn't accept request.", "error"); }
+    return;
+  }
+  const declineBtn = e.target.closest(".declineReqBtn");
+  if(declineBtn){
+    try{ await updateDoc(doc(db, "conversations", declineBtn.dataset.conv), { status: "declined", updatedAt: serverTimestamp() }); showToast("Request declined", "info"); }
+    catch(err){ console.error(err); showToast("Couldn't decline request.", "error"); }
+    return;
+  }
+});
+
+/* ================================================================== */
+/* ================= FULL-PAGE CHAT INTERFACE ======================= */
+/* ================================================================== */
+
+async function markConversationRead(convId, uid){
+  try{ await updateDoc(doc(db, "conversations", convId), { [`unreadFor.${uid}`]: false }); }
+  catch(err){ /* conversation may not exist yet — safe to ignore */ }
+}
+async function markMessagesRead(convId, uid, msgs){
+  const unreadIncoming = msgs.filter(m => m.senderId !== uid && m.status === "unread");
+  if(unreadIncoming.length === 0) return;
+  try{ await Promise.all(unreadIncoming.map(m => updateDoc(doc(db, "conversations", convId, "messages", m.id), { status: "read" }))); }
+  catch(err){ console.error(err); }
+}
+
+// ============================================================================
+// ⏱️ FEATURE 1: 7-DAY AUTOMATIC CHAT MESSAGE EXPIRATION — helper functions
+// ============================================================================
+// Every message document independently carries:
+//   • createdAt -> Firebase Server Timestamp (authoritative send time)
+//   • expireAt  -> a real Firestore Timestamp exactly 7 days after createdAt,
+//                  computed from the client clock (Firestore TTL requires an
+//                  actual Timestamp value — it cannot use the serverTimestamp()
+//                  sentinel — so we compute it as "now + 7 days" at write time).
+// This `expireAt` field is what the Firestore TTL policy (configured once in
+// the Firebase Console / gcloud CLI — see the note below the code) watches to
+// permanently delete the document server-side, even if nobody ever reopens
+// the conversation. Until that background sweep runs, isMessageExpired()
+// below hides any already-expired message from the UI immediately.
+function computeExpireAtTimestamp(){
+  return Timestamp.fromMillis(Date.now() + MESSAGE_TTL_MS);
+}
+function isMessageExpired(m){
+  // Prefer the authoritative server-computed expireAt field. Messages written
+  // before this feature shipped (no expireAt) are treated as not-yet-expired
+  // so existing conversations keep working exactly as before.
+  if(m.expireAt && typeof m.expireAt.toMillis === "function"){
+    return m.expireAt.toMillis() <= Date.now();
+  }
+  return false;
+}
+
+function updateChatHeaderBlockBtn(){
+  const blocked = isBlocked(currentConvTarget);
+  els.chatBlockToggleBtn.textContent = blocked ? "🔓 Unblock User" : "🚫 Block User";
+  els.chatBlockToggleBtn.className = "flex-shrink-0 text-xs font-medium px-3 py-1.5 rounded-full border transition whitespace-nowrap " + (blocked ? "block-btn-blocked" : "block-btn-active");
+}
+
+function updateChatBanner(){
+  if(!currentConvTarget) return;
+  const blocked = isBlocked(currentConvTarget);
+  if(blocked){
+    els.chatBanner.textContent = "🚫 You've blocked this user. Tap Unblock above to send messages again.";
+    els.chatBanner.className = "px-4 py-2 border-b text-[11px] flex-shrink-0 bg-red-500/10 border-red-400/20 text-red-300";
+    els.chatBanner.classList.remove("hidden");
+    els.chatInput.disabled = true; els.chatInput.placeholder = "Unblock this user to send a message…";
+    els.chatSendBtn.disabled = true; els.chatSendBtn.classList.add("opacity-40","pointer-events-none");
+    return;
+  }
+  els.chatInput.disabled = false; els.chatInput.placeholder = "Type message";
+  els.chatSendBtn.disabled = false; els.chatSendBtn.classList.remove("opacity-40","pointer-events-none");
+  const conv = conversations.find(c => c.id === currentConvId);
+  if(conv && conv.status === "pending" && conv.initiator !== currentUser.uid){
+    els.chatBanner.textContent = "Replying will accept this message request.";
+    els.chatBanner.className = "px-4 py-2 border-b text-[11px] flex-shrink-0 bg-amber-400/10 border-amber-400/20 text-amber-200";
+    els.chatBanner.classList.remove("hidden");
+  } else {
+    els.chatBanner.classList.add("hidden");
+  }
+}
+
+function openChatFullPage(targetId, targetName){
+  if(!currentUser || !targetId || targetId === currentUser.uid) return;
+
+  // ---- 1) ALWAYS tear down any previous conversation's listener first ----
+  // This guarantees there is never more than one active Firestore listener
+  // for a conversation, even if the user is rapidly tapping between chats
+  // or reopening the exact same conversation they just left.
+  if(typeof currentChatUnsubscribe === "function"){
+    currentChatUnsubscribe();
+    currentChatUnsubscribe = null;
+  }
+
+  currentConvTarget = targetId;
+  currentConvId = [currentUser.uid, targetId].sort().join("_");
+  chatHeaderTargetName = targetName || nameFor(targetId) || "Friend";
+  els.chatHeaderName.textContent = chatHeaderTargetName;
+  els.chatHeaderAvatar.textContent = chatHeaderTargetName.charAt(0).toUpperCase();
+
+  // ---- 2) Reset stale DOM/cache state before showing the loading state ----
+  // ROOT CAUSE OF THE "stuck on Loading conversation…" BUG:
+  // paintMessages() writes chatBody's HTML through setHtmlIfChanged(), which
+  // skips the actual DOM write whenever the computed HTML is byte-identical
+  // to what it last cached for that element (a perf optimization). Setting
+  // chatBody.innerHTML directly here (for the loading placeholder) does NOT
+  // go through that helper, so it never updates the cache — it only
+  // overwrites the visible DOM. The result: if you reopen the exact same
+  // conversation, the new snapshot's first payload can be identical to what
+  // was cached from the previous time this chat was open, so
+  // setHtmlIfChanged() thinks "nothing changed" and silently skips the
+  // write — leaving the manually-inserted "Loading conversation…" text on
+  // screen forever. Explicitly invalidating the cache entry for chatBody
+  // here (and again on close) guarantees the next real paint always lands.
+  _lastHtmlCache.delete(els.chatBody);
+  els.chatBody.innerHTML = `<div class="text-xs text-white/30 text-center py-8">Loading conversation…</div>`;
+
+  els.chatFullPage.classList.remove("hidden");
+  els.chatFullPage.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  updateChatHeaderPresence();
+  updateChatHeaderBlockBtn();
+  updateChatBanner();
+  markConversationRead(currentConvId, currentUser.uid);
+  updateMessageBadges();
+
+  // ---- 3) Create a brand-new query + listener for this open, every time ----
+  const openedForConvId = currentConvId; // snapshot the id this listener belongs to
+  const msgsCol = collection(db, "conversations", currentConvId, "messages");
+  const q = query(msgsCol, orderBy("timestamp","asc"), limit(300));
+  currentChatUnsubscribe = onSnapshot(q, (snap) => {
+    // Guard against a late callback from a listener that should already
+    // have been torn down (e.g. user switched conversations before this
+    // fired) — never paint stale data into the currently-open thread.
+    if(openedForConvId !== currentConvId) return;
+    const msgs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    paintMessages(msgs);
+    markMessagesRead(currentConvId, currentUser.uid, msgs);
+  }, (err) => {
+    console.error("[MoodMeter] Chat listener failed for conversation", openedForConvId, err);
+    if(openedForConvId !== currentConvId) return;
+    _lastHtmlCache.delete(els.chatBody);
+    els.chatBody.innerHTML = `<div class="text-xs text-red-300 text-center py-8">Couldn't load messages — check Firestore rules.</div>`;
+  });
+}
+function closeChatFullPage(){
+  els.chatFullPage.classList.add("hidden");
+  els.chatFullPage.style.display = "none";
+  document.body.style.overflow = "";
+
+  // Full teardown of everything tied to the conversation that was open —
+  // listener, ids, and any cached DOM snapshot for the chat body — so the
+  // next openChatFullPage() call (even for the same conversation) starts
+  // from a completely clean slate.
+  if(typeof currentChatUnsubscribe === "function"){
+    currentChatUnsubscribe();
+    currentChatUnsubscribe = null;
+  }
+  currentConvId = null;
+  currentConvTarget = null;
+  _lastHtmlCache.delete(els.chatBody);
+  els.chatBody.innerHTML = "";
+}
+els.chatBackBtn.addEventListener("click", closeChatFullPage);
+
+els.chatBlockToggleBtn.addEventListener("click", () => {
+  if(!currentConvTarget) return;
+  toggleBlockUser(currentConvTarget);
+});
+
+function paintMessages(msgs){
+  // 🔒 FEATURE 1 CLIENT-SIDE GUARD: filter out any message whose expireAt
+  // has already passed. This runs on every snapshot, in addition to the
+  // server-side Firestore TTL sweep, so an expired message can never
+  // flash on screen even in the window before TTL physically deletes it.
+  msgs = msgs.filter(m => !isMessageExpired(m));
+
+  if(msgs.length === 0){
+    setHtmlIfChanged(els.chatBody, `<div class="text-xs text-white/30 text-center py-8">Say hi 👋 — sending a message starts a private request with this person.</div>`);
+    return;
+  }
+  let lastMineIndex = -1;
+  msgs.forEach((m, i) => { if(m.senderId === currentUser.uid && !m.deleted) lastMineIndex = i; });
+  const lastMineSeen = lastMineIndex >= 0 && msgs[lastMineIndex].status === "read";
+
+  const html = msgs.map((m, i) => {
+    const mine = currentUser && m.senderId === currentUser.uid;
+    if(m.deleted){
+      return `<div class="flex flex-col ${mine ? "items-end" : "items-start"}">
+        <div class="bg-white/5 text-white/30 italic rounded-2xl px-3 py-2 text-sm max-w-[75%]">Message deleted</div>
+        <span class="text-[10px] text-white/40 mt-1 px-1">${formatMsgTime(m.timestamp)}</span>
+      </div>`;
+    }
+    const actionsHtml = mine ? `
+      <div class="flex gap-2 mt-1 justify-end text-[10px] text-white/30">
+        <button class="editMsgBtn hover:text-white/60" data-id="${m.id}">✏️ Edit</button>
+        <button class="deleteMsgBtn hover:text-red-300" data-id="${m.id}">🗑️ Delete</button>
+      </div>` : "";
+    const seenHtml = (mine && i === lastMineIndex && lastMineSeen) ? `
+      <div class="flex items-center gap-1 mt-1 justify-end">
+        <div class="seen-avatar" title="Seen by ${escapeHtml(chatHeaderTargetName)}">${chatHeaderTargetName.charAt(0).toUpperCase()}</div>
+        <span class="text-[9px] text-white/30">Seen</span>
+      </div>` : "";
+    return `<div class="flex flex-col ${mine ? "items-end" : "items-start"}">
+      <div class="msg-bubble ${mine ? "bg-white text-black" : "bg-white/10 text-white"} rounded-2xl px-4 py-2.5 text-sm break-words">${escapeHtml(m.text)}${m.edited ? ` <span class="text-[10px] opacity-50">(edited)</span>` : ""}</div>
+      <span class="text-[10px] text-white/40 mt-1 px-1">${formatMsgTime(m.timestamp)}</span>
+      ${actionsHtml}
+      ${seenHtml}
+    </div>`;
+  }).join("");
+  const changed = setHtmlIfChanged(els.chatBody, html);
+  if(changed) els.chatBody.scrollTop = els.chatBody.scrollHeight;
+}
+
+els.chatBody.addEventListener("click", async (e) => {
+  const editBtn = e.target.closest(".editMsgBtn");
+  if(editBtn){
+    const newText = prompt("Edit your message:");
+    if(newText === null || !newText.trim()) return;
+    try{ await updateDoc(doc(db, "conversations", currentConvId, "messages", editBtn.dataset.id), { text: newText.trim().slice(0,500), edited: true }); }
+    catch(err){ console.error(err); showToast("Couldn't edit message.", "error"); }
+    return;
+  }
+  const deleteBtn = e.target.closest(".deleteMsgBtn");
+  if(deleteBtn){
+    if(!confirm("Delete this message?")) return;
+    try{ await updateDoc(doc(db, "conversations", currentConvId, "messages", deleteBtn.dataset.id), { deleted: true, text: "" }); }
+    catch(err){ console.error(err); showToast("Couldn't delete message.", "error"); }
+    return;
+  }
+});
+
+els.chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if(!currentUser || !currentConvId) return;
+  if(isBlocked(currentConvTarget)){ showToast("Unblock this user to send messages.", "error"); return; }
+  const text = els.chatInput.value.trim();
+  if(!text) return;
+  try{
+    const existing = conversations.find(c => c.id === currentConvId);
+    const unreadPatch = { [`unreadFor.${currentConvTarget}`]: true, [`unreadFor.${currentUser.uid}`]: false };
+    if(!existing){
+      await setDoc(doc(db, "conversations", currentConvId), {
+        participants: [currentUser.uid, currentConvTarget], status: "pending", initiator: currentUser.uid,
+        updatedAt: serverTimestamp(), lastMessage: text.slice(0,80), lastMessageSenderId: currentUser.uid,
+        unreadFor: { [currentConvTarget]: true, [currentUser.uid]: false }
+      }, { merge: true });
+    } else if(existing.status === "pending" && existing.initiator !== currentUser.uid){
+      await updateDoc(doc(db, "conversations", currentConvId), { status: "accepted", updatedAt: serverTimestamp(), lastMessage: text.slice(0,80), lastMessageSenderId: currentUser.uid, ...unreadPatch });
+      els.chatBanner.classList.add("hidden");
+    } else {
+      await updateDoc(doc(db, "conversations", currentConvId), { updatedAt: serverTimestamp(), lastMessage: text.slice(0,80), lastMessageSenderId: currentUser.uid, ...unreadPatch });
+    }
+    // ⏱️ FEATURE 1: every message independently carries its own createdAt
+    // (server timestamp) and expireAt (createdAt + exactly 7 days). Message
+    // A sent today and Message B sent tomorrow each get their own expireAt,
+    // computed at write time — never derived from, or tied to, any other
+    // message or the conversation document itself.
+    await addDoc(collection(db, "conversations", currentConvId, "messages"), {
+      senderId: currentUser.uid, text: text.slice(0,500),
+      timestamp: serverTimestamp(),      // kept for existing ordering/display logic
+      createdAt: serverTimestamp(),      // FEATURE 1: authoritative creation time
+      expireAt: computeExpireAtTimestamp(), // FEATURE 1: createdAt + 7 days, watched by Firestore TTL
+      status: "unread", edited: false, deleted: false
+    });
+    els.chatInput.value = "";
+  } catch(err){ console.error(err); showToast("Couldn't send message.", "error"); }
+});
+
+/* ================================================================== */
+/* ================= VIBE MONITOR (ANALYTICS) — REDESIGNED ========== */
+/* ================================================================== */
+
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function buildMoodCounts(){ return { happy:0, sad:0, angry:0, calm:0, stressed:0, neutral:0 }; }
+
+function renderDonutSVG(container, counts, total){
+  const size = 180, cx = size/2, cy = size/2, r = 70, stroke = 26;
+  const circumference = 2 * Math.PI * r;
+  let offset = 0;
+  const segs = Object.entries(MOODS).map(([key,m]) => {
+    const val = counts[key] || 0;
+    const pct = total > 0 ? val/total : 0;
+    const dash = pct * circumference;
+    const seg = `<circle class="segpath" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${m.bar}" stroke-width="${stroke}"
+      stroke-dasharray="${dash} ${circumference-dash}" stroke-dashoffset="${-offset}" stroke-linecap="butt" transform="rotate(-90 ${cx} ${cy})"></circle>`;
+    offset += dash;
+    return seg;
+  }).join("");
+  const html = `
+    <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="${stroke}"></circle>
+      ${segs}
+    </svg>
+    <div class="donut-center">
+      <div class="display text-2xl font-bold">${total}</div>
+      <div class="text-[10px] text-white/40">entries</div>
+    </div>`;
+  setHtmlIfChanged(container, html);
+  container.style.position = "relative";
+  container.style.width = size+"px";
+  container.style.height = size+"px";
+}
+
+function paintMoodBreakdownBars(container, counts, total, emptyMsg){
+  if(total === 0){
+    setHtmlIfChanged(container, `<div class="text-sm text-white/30 text-center py-6">${emptyMsg}</div>`);
+    return;
+  }
+  const html = Object.entries(MOODS).map(([key,m]) => {
+    const val = counts[key] || 0;
+    const pct = Math.round((val/total)*100);
+    return `<div>
+      <div class="flex justify-between text-xs mb-1"><span>${m.emoji} ${m.label}</span><span class="text-white/40">${val} logs · ${pct}%</span></div>
+      <div class="w-full h-2.5 rounded-full bg-white/10 overflow-hidden"><div class="bar-fill h-full rounded-full" style="width:${pct}%; background:${m.bar};"></div></div>
+    </div>`;
+  }).join("");
+  setHtmlIfChanged(container, html);
+}
+
+function paintPersonalBreakdown(container, docsArr){
+  const total = docsArr.length;
+  const counts = buildMoodCounts();
+  docsArr.forEach(d => { if(counts[d.mood] !== undefined) counts[d.mood]++; });
+  if(total === 0){
+    setHtmlIfChanged(container, `<div class="text-sm text-white/30 text-center py-4">No entries logged in this period yet.</div>`);
+    return;
+  }
+  const html = Object.entries(MOODS).map(([key,m]) => {
+    const pct = Math.round((counts[key]/total)*100);
+    return `<div class="personal-mood-row glass rounded-xl p-3 flex items-center gap-3" style="border-color: rgba(${m.glow},0.35); background: linear-gradient(90deg, rgba(${m.glow},0.10), transparent);">
+      <span class="text-xl flex-shrink-0">${m.emoji}</span>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between text-xs mb-1"><span class="font-medium">${m.label}</span><span class="text-white/50">${pct}% · ${counts[key]} logs</span></div>
+        <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden"><div class="bar-fill h-full rounded-full" style="width:${pct}%; background:${m.bar};"></div></div>
+      </div>
+    </div>`;
+  }).join("");
+  setHtmlIfChanged(container, html);
+}
+
+/* ---------- BLOCK A: Global Daily / Monthly Mood Tracker ---------- */
+
+// ============================================================================
+// 📊 FEATURE 2: MONTHLY GLOBAL MOOD SUMMARY
+// ============================================================================
+// Adds a Daily / Monthly mode selector above the existing Global date picker.
+// Daily mode is 100% unchanged from before. Monthly mode reuses the exact
+// same donut + bars UI, but its data source becomes every public mood log
+// whose `day` field (already computed with the same client-local timezone
+// logic used everywhere else in the app — see localDateStr() above) falls
+// within the selected calendar month, from the 1st at 00:00:00 through the
+// last day at 23:59:59 local time.
+
+function monthRangeStrs(monthStr){
+  // monthStr is "YYYY-MM". Returns the first and last "YYYY-MM-DD" day keys
+  // for that month — using simple string arithmetic so it lines up exactly
+  // with the local-timezone `day` keys already stored on every mood doc.
+  const [y, m] = monthStr.split("-").map(Number);
+  const first = `${monthStr}-01`;
+  const lastDate = new Date(y, m, 0).getDate(); // day 0 of next month = last day of this month
+  const last = `${monthStr}-${String(lastDate).padStart(2,"0")}`;
+  return { first, last };
+}
+
+function loadGlobalDayFromCache(){
+  const cached = communityDocs.filter(d => d.day === globalSelectedDate && d.isPublic !== false);
+  globalDayDocs = cached;
+  paintGlobalPeriod();
+}
+
+async function fetchGlobalDay(dateStr){
+  els.globalDateLoading.classList.remove("hidden");
+  try{
+    const q = query(moodsCol, where("day", "==", dateStr), limit(500));
+    const snap = await getDocs(q);
+    globalDayDocs = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(d => d.isPublic !== false);
+  } catch(err){
+    console.error(err);
+    showToast("Couldn't load that day's data — check Firestore rules.", "error");
+    globalDayDocs = communityDocs.filter(d => d.day === dateStr && d.isPublic !== false);
+  }
+  els.globalDateLoading.classList.add("hidden");
+  paintGlobalPeriod();
+}
+
+// FEATURE 2: fetch every public mood log for an entire calendar month —
+// first day 00:00:00 through last day 23:59:59, using the same local `day`
+// key logic as Daily Statistics. A local-cache fallback (mirroring the Daily
+// path above) keeps things working even if the range query hits a rules or
+// index issue while Firestore auto-builds the needed index.
+async function fetchGlobalMonth(monthStr){
+  els.globalDateLoading.classList.remove("hidden");
+  const { first, last } = monthRangeStrs(monthStr);
+  try{
+    const q = query(moodsCol, where("day", ">=", first), where("day", "<=", last), limit(2000));
+    const snap = await getDocs(q);
+    globalDayDocs = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(d => d.isPublic !== false);
+  } catch(err){
+    console.error(err);
+    showToast("Couldn't load that month's data — check Firestore rules/indexes.", "error");
+    globalDayDocs = communityDocs.filter(d => d.day && d.day >= first && d.day <= last && d.isPublic !== false);
+  }
+  els.globalDateLoading.classList.add("hidden");
+  paintGlobalPeriod();
+}
+
+function loadGlobalMonthFromCache(monthStr){
+  const { first, last } = monthRangeStrs(monthStr);
+  globalDayDocs = communityDocs.filter(d => d.day && d.day >= first && d.day <= last && d.isPublic !== false);
+  paintGlobalPeriod();
+}
+
+// Unified paint function for BOTH Daily and Monthly modes — reuses the exact
+// same donut chart and breakdown bars UI already built for Daily Statistics;
+// only the heading text and the underlying data source (globalDayDocs) change.
+function paintGlobalPeriod(){
+  const total = globalDayDocs.length;
+  const counts = buildMoodCounts();
+  globalDayDocs.forEach(d => { if(counts[d.mood] !== undefined) counts[d.mood]++; });
+
+  if(globalMode === "daily"){
+    const dateObj = new Date(globalSelectedDate + "T00:00:00");
+    const isToday = globalSelectedDate === todayStr();
+    const label = dateObj.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    els.globalDayHeading.textContent = `${isToday ? "Today's" : label + "'s"} Global Vibe Share`;
+    els.globalDayEmpty.textContent = "No public entries logged on this date yet.";
+  } else {
+    const [y, m] = globalSelectedMonth.split("-").map(Number);
+    const label = `${MONTH_NAMES[m-1]} ${y}`;
+    els.globalDayHeading.textContent = `${label} Global Vibe Share`;
+    els.globalDayEmpty.textContent = "No public entries logged in this month yet.";
+  }
+
+  renderDonutSVG(els.globalDonutWrap, counts, total);
+  els.globalDayEmpty.classList.toggle("hidden", total > 0);
+  els.globalDayBars.classList.toggle("hidden", total === 0);
+  if(total > 0) paintMoodBreakdownBars(els.globalDayBars, counts, total, "");
+}
+
+function initGlobalDatePicker(){
+  els.globalDatePicker.value = globalSelectedDate;
+  els.globalDatePicker.max = todayStr();
+  els.globalMonthPicker.value = globalSelectedMonth;
+  els.globalMonthPicker.max = todayStr().slice(0,7);
+  if(globalMode === "daily") loadGlobalDayFromCache();
+  else loadGlobalMonthFromCache(globalSelectedMonth);
+}
+els.globalDatePicker.addEventListener("change", (e) => {
+  const val = e.target.value;
+  if(!val) return;
+  globalSelectedDate = val;
+  if(val === todayStr()){ loadGlobalDayFromCache(); }
+  else { fetchGlobalDay(val); }
+});
+els.globalMonthPicker.addEventListener("change", (e) => {
+  const val = e.target.value;
+  if(!val) return;
+  globalSelectedMonth = val;
+  if(val === todayStr().slice(0,7)){ loadGlobalMonthFromCache(val); }
+  else { fetchGlobalMonth(val); }
+});
+els.globalDateTodayBtn.addEventListener("click", () => {
+  if(globalMode === "daily"){
+    globalSelectedDate = todayStr();
+    els.globalDatePicker.value = globalSelectedDate;
+    loadGlobalDayFromCache();
+  } else {
+    globalSelectedMonth = todayStr().slice(0,7);
+    els.globalMonthPicker.value = globalSelectedMonth;
+    loadGlobalMonthFromCache(globalSelectedMonth);
+  }
+});
+
+// FEATURE 2: Daily / Monthly mode toggle. Switching modes never reloads the
+// page — it instantly swaps which picker is visible and repaints the exact
+// same donut + bars UI from the newly selected data source.
+document.querySelectorAll("#globalModeTabs .mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const mode = btn.dataset.mode;
+    if(mode === globalMode) return;
+    globalMode = mode;
+    document.querySelectorAll("#globalModeTabs .mode-btn").forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+    els.globalDatePicker.classList.toggle("hidden", mode !== "daily");
+    els.globalMonthPicker.classList.toggle("hidden", mode !== "monthly");
+    els.globalDatePickerLabel.textContent = mode === "daily" ? "Viewing date" : "Viewing month";
+    els.globalDateTodayBtn.textContent = mode === "daily" ? "Today" : "This Month";
+    if(mode === "daily") loadGlobalDayFromCache();
+    else loadGlobalMonthFromCache(globalSelectedMonth);
+  });
+});
+
+function renderWeeklyChart(docsArr){
+  const days = [];
+  for(let i=6;i>=0;i--){ const d = new Date(); d.setDate(d.getDate()-i); days.push(localDateStr(d)); }
+  const dayCounts = days.map(day => docsArr.filter(d => d.day === day).length);
+  const maxVal = Math.max(...dayCounts, 1);
+  els.weeklyChart.innerHTML = ""; els.weeklyLabels.innerHTML = "";
+  const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  days.forEach((day, i) => {
+    const h = Math.round((dayCounts[i] / maxVal) * 100);
+    const col = document.createElement("div");
+    col.className = "flex-1 flex flex-col items-center justify-end h-full";
+    col.innerHTML = `<div class="text-[10px] text-white/40 mb-1">${dayCounts[i]}</div>
+      <div class="bar-fill w-full rounded-t-lg" style="height:${Math.max(h,4)}%; background:linear-gradient(180deg, rgba(255,205,90,0.9), rgba(120,170,255,0.6));"></div>`;
+    els.weeklyChart.appendChild(col);
+    // day is a YYYY-MM-DD local-timezone key; parse with explicit parts to
+    // avoid any UTC re-interpretation when deriving the weekday label.
+    const [yy, mm, dd] = day.split("-").map(Number);
+    const lbl = document.createElement("span"); lbl.textContent = dayNames[new Date(yy, mm-1, dd).getDay()];
+    els.weeklyLabels.appendChild(lbl);
+  });
+}
+
+/* ---------- BLOCK B: My Historical Personal Sanctuary ---------- */
+
+function populateMonthYearSelectors(){
+  els.myMonthSelect.innerHTML = MONTH_NAMES.map((m,i) => `<option value="${i}" ${i===myMonthSelVal?"selected":""}>${m}</option>`).join("");
+  const nowYear = new Date().getFullYear();
+  const entryYears = myDocs.map(d => d.day ? parseInt(d.day.slice(0,4),10) : nowYear).filter(y => !isNaN(y));
+  const earliest = entryYears.length ? Math.min(...entryYears, nowYear) : nowYear - 1;
+  const years = [];
+  for(let y = nowYear; y >= earliest; y--) years.push(y);
+  els.myMonthYearSelect.innerHTML = years.map(y => `<option value="${y}" ${y===myMonthYearSelVal?"selected":""}>${y}</option>`).join("");
+  els.myYearSelect.innerHTML = years.map(y => `<option value="${y}" ${y===myYearSelVal?"selected":""}>${y}</option>`).join("");
+}
+
+function renderMyMonthlyBreakdown(){
+  const monthKey = `${myMonthYearSelVal}-${String(myMonthSelVal+1).padStart(2,"0")}`;
+  const monthDocs = myDocs.filter(d => d.day && d.day.slice(0,7) === monthKey);
+  els.monthlyReportTitle.textContent = `${MONTH_NAMES[myMonthSelVal]} ${myMonthYearSelVal} Archive`;
+  paintPersonalBreakdown(els.myMonthlyBars, monthDocs);
+}
+function renderMyYearlyBreakdown(){
+  const yearDocs = myDocs.filter(d => d.day && d.day.slice(0,4) === String(myYearSelVal));
+  els.yearlyReportTitle.textContent = `Year ${myYearSelVal} Legacy Overview`;
+  paintPersonalBreakdown(els.myYearlyBars, yearDocs);
+}
+
+els.myMonthSelect.addEventListener("change", (e) => { myMonthSelVal = parseInt(e.target.value,10); renderMyMonthlyBreakdown(); });
+els.myMonthYearSelect.addEventListener("change", (e) => { myMonthYearSelVal = parseInt(e.target.value,10); renderMyMonthlyBreakdown(); });
+els.myYearSelect.addEventListener("change", (e) => { myYearSelVal = parseInt(e.target.value,10); renderMyYearlyBreakdown(); });
+
+function initAnalyticsView(){
+  initGlobalDatePicker();
+  renderWeeklyChart(communityDocs.filter(d => d.isPublic !== false));
+  populateMonthYearSelectors();
+  renderMyMonthlyBreakdown();
+  renderMyYearlyBreakdown();
+}
+
+/* ---------------- Functional social sharing ---------------- */
+function getDailyGlobalShareText(){
+  const total = globalDayDocs.length;
+  const counts = buildMoodCounts();
+  globalDayDocs.forEach(d => { if(counts[d.mood] !== undefined) counts[d.mood]++; });
+  const denom = total || 1;
+  const lines = Object.entries(MOODS).map(([k,m]) => `${m.emoji} ${m.label}: ${Math.round((counts[k]/denom)*100)}%`).join(", ");
+  const pageUrl = window.location.href;
+  if(globalMode === "daily"){
+    const dateObj = new Date(globalSelectedDate + "T00:00:00");
+    const label = dateObj.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+    return `The community's Global Vibe on MoodMeter 🌗 for ${label}: ${lines}. Total check-ins that day: ${total}. Trace your footprint live here: ${pageUrl}`;
+  }
+  const [y, m] = globalSelectedMonth.split("-").map(Number);
+  const label = `${MONTH_NAMES[m-1]} ${y}`;
+  return `The community's Global Vibe on MoodMeter 🌗 for ${label}: ${lines}. Total check-ins that month: ${total}. Trace your footprint live here: ${pageUrl}`;
+}
+function getMyMonthlyShareText(){
+  const monthKey = `${myMonthYearSelVal}-${String(myMonthSelVal+1).padStart(2,"0")}`;
+  const monthDocs = myDocs.filter(d => d.day && d.day.slice(0,7) === monthKey);
+  const total = monthDocs.length || 1;
+  const counts = buildMoodCounts();
+  monthDocs.forEach(d => { if(counts[d.mood] !== undefined) counts[d.mood]++; });
+  const topEntry = Object.entries(counts).sort((a,b) => b[1]-a[1])[0];
+  const topPct = Math.round((topEntry[1]/total)*100);
+  const topLabel = MOODS[topEntry[0]].label;
+  const pageUrl = window.location.href;
+  return `My ${MONTH_NAMES[myMonthSelVal]} ${myMonthYearSelVal} analytics report on MoodMeter is showing ${topPct}% ${topLabel} vibes! 🌗 Trace your footprint live here: ${pageUrl}`;
+}
+function getMyYearlyShareText(){
+  const yearDocs = myDocs.filter(d => d.day && d.day.slice(0,4) === String(myYearSelVal));
+  const total = yearDocs.length || 1;
+  const counts = buildMoodCounts();
+  yearDocs.forEach(d => { if(counts[d.mood] !== undefined) counts[d.mood]++; });
+  const topEntry = Object.entries(counts).sort((a,b) => b[1]-a[1])[0];
+  const topPct = Math.round((topEntry[1]/total)*100);
+  const topLabel = MOODS[topEntry[0]].label;
+  const pageUrl = window.location.href;
+  return `My Year ${myYearSelVal} Legacy Report on MoodMeter 🏆: ${topPct}% ${topLabel} vibes across ${yearDocs.length} check-ins! Trace your footprint live here: ${pageUrl}`;
+}
+
+function wireShareRow(prefix, getText){
+  $(`share${prefix}Whatsapp`).addEventListener("click", () => window.open(`https://wa.me/?text=${encodeURIComponent(getText())}`, "_blank"));
+  $(`share${prefix}Facebook`).addEventListener("click", () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(getText())}`, "_blank"));
+  $(`share${prefix}X`).addEventListener("click", () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getText())}`, "_blank"));
+  $(`share${prefix}Copy`).addEventListener("click", async () => {
+    try{ await navigator.clipboard.writeText(getText()); showToast("Copied to clipboard 📋", "success"); }
+    catch(err){ showToast("Couldn't copy report.", "error"); }
+  });
+}
+wireShareRow("Daily", getDailyGlobalShareText);
+wireShareRow("Monthly", getMyMonthlyShareText);
+wireShareRow("Yearly", getMyYearlyShareText);
+
+/* ---------------- Profile rendering ---------------- */
+function computeStreak(){ return streakFromDocs(myDocs); }
+function renderProfile(){
+  els.streakCount.textContent = computeStreak();
+  els.totalLogs.textContent = myDocs.length;
+  if(myDocs.length){
+    const m = getMoodMeta(myDocs[0]);
+    els.lastMoodEmoji.textContent = m.emoji;
+    els.lastMoodLabel.textContent = m.label;
+    renderChatbot(myDocs[0].mood);
+  } else {
+    els.lastMoodEmoji.textContent = "—"; els.lastMoodLabel.textContent = "No entries yet";
+  }
+  renderCalendar();
+  if(myDocs.length === 0){
+    setHtmlIfChanged(els.myEntriesList, `<div class="text-sm text-white/30 text-center py-6">No entries yet — log your first mood!</div>`);
+  } else {
+    const html = myDocs.map(d => {
+      const m = getMoodMeta(d);
+      return `<button class="entryRowBtn w-full text-left flex items-center gap-3 bg-white/5 hover:bg-white/10 transition rounded-xl px-4 py-2.5" data-id="${d.id}">
+        <span class="text-lg">${m.emoji}</span>
+        <span class="text-sm flex-1 truncate">${d.note ? escapeHtml(d.note) : `<span class="text-white/30">No note</span>`}</span>
+        <span class="text-xs text-white/30 whitespace-nowrap">${d.day}</span>
+      </button>`;
+    }).join("");
+    setHtmlIfChanged(els.myEntriesList, html);
+  }
+}
+els.myEntriesList.addEventListener("click", (e) => {
+  const row = e.target.closest(".entryRowBtn");
+  if(!row) return;
+  const entry = myDocs.find(d => d.id === row.dataset.id);
+  if(entry) openEntryModal(entry);
+});
+function openEntryModal(d){
+  const m = getMoodMeta(d);
+  openModal(`
+    <button class="absolute top-4 right-4 text-white/40 hover:text-white text-lg" onclick="document.getElementById('entryModal').classList.add('hidden')">✕</button>
+    <div class="text-center mb-4">
+      <div class="text-5xl mb-2">${m.emoji}</div>
+      <div class="display text-xl font-semibold">${m.label}</div>
+      <div class="text-xs text-white/40 mt-1">${d.day}</div>
+    </div>
+    <div class="bg-white/5 rounded-xl p-4 text-sm text-white/80 leading-relaxed min-h-[60px]">
+      ${d.note ? escapeHtml(d.note) : "<span class='text-white/30'>No journal note for this entry.</span>"}
+    </div>
+    <div class="text-xs text-white/30 mt-4 text-center">${d.isPublic === false ? "🔒 Private entry" : "🌍 Shared to Feed"} ${d.isAnonymous ? "· 🕶️ Posted anonymously" : ""}</div>
+  `);
+}
+
+/* ---------------- Calendar ---------------- */
+function renderCalendar(){
+  const year = calViewDate.getFullYear();
+  const month = calViewDate.getMonth();
+  els.calLabel.textContent = calViewDate.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+  const dayMap = {};
+  myDocs.forEach(d => { if(d.day && !dayMap[d.day]) dayMap[d.day] = d; });
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const todayKey = todayStr();
+  const cellsHtml = [];
+  for(let i=0;i<firstDay;i++){ cellsHtml.push(`<div></div>`); }
+  for(let day=1; day<=daysInMonth; day++){
+    // Timezone-safe local key — matches exactly how `day` is stored on write.
+    const key = localDateStr(new Date(year, month, day));
+    const entry = dayMap[key];
+    let style = "background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.25);";
+    if(entry){
+      const m = getMoodMeta(entry);
+      style = `background:rgba(${m.glow},0.85); color:#0B0C14; font-weight:600;`;
+    }
+    if(key === todayKey) style += " box-shadow:0 0 0 2px rgba(255,255,255,0.5) inset;";
+    cellsHtml.push(`<div class="cal-day" data-key="${key}" style="${style}">${day}</div>`);
+  }
+  setHtmlIfChanged(els.calendarGrid, cellsHtml.join(""));
+}
+els.calendarGrid.addEventListener("click", (e) => {
+  const cell = e.target.closest(".cal-day[data-key]");
+  if(!cell) return;
+  const entry = myDocs.find(d => d.day === cell.dataset.key);
+  if(entry) openEntryModal(entry);
+});
+els.calPrev.addEventListener("click", () => { calViewDate.setMonth(calViewDate.getMonth()-1); renderCalendar(); });
+els.calNext.addEventListener("click", () => { calViewDate.setMonth(calViewDate.getMonth()+1); renderCalendar(); });
+
+function renderChatbot(mood){
+  const lines = COMFORT_LINES[mood] || COMFORT_LINES.calm;
+  els.chatbotBox.textContent = lines[Math.floor(Math.random()*lines.length)];
+}
+$("chatbotRefresh").addEventListener("click", () => { if(myDocs.length) renderChatbot(myDocs[0].mood); });
+
+/* ---------------- Edit display name ---------------- */
+$("editNameBtn").addEventListener("click", async () => {
+  if(!currentUser) return;
+  const newName = prompt("Update your display name:", currentUser.displayName || "");
+  if(newName === null || newName.trim() === "") return;
+  try{
+    await updateProfile(currentUser, { displayName: newName.trim() });
+    els.userName.textContent = newName.trim();
+    els.userAvatar.textContent = newName.trim().charAt(0).toUpperCase();
+    els.userAvatarMobile.textContent = newName.trim().charAt(0).toUpperCase();
+    els.homeGreeting.textContent = `Hey ${newName.trim().split(" ")[0]}, how are you really?`;
+    showToast("Name updated ✅", "success");
+  } catch(err){ console.error(err); showToast("Couldn't update name.", "error"); }
+});
+
+/* ---------------- SEO: dynamic canonical/OG URL + footer year ---------------- */
+try{
+  const currentUrl = window.location.href.split("#")[0];
+  const canonicalEl = document.getElementById("canonicalLink");
+  if(canonicalEl) canonicalEl.setAttribute("href", currentUrl);
+  const ogUrlEl = document.getElementById("ogUrlTag");
+  if(ogUrlEl) ogUrlEl.setAttribute("content", currentUrl);
+} catch(err){ /* non-critical */ }
+const footerYearEl = document.getElementById("footerYear");
+if(footerYearEl) footerYearEl.textContent = new Date().getFullYear();
+
+/* ---------------- Init ---------------- */
+$("glowField").style.setProperty("--glow", "250,225,120");
+</script>
+
+<!-- ================= LANDING PAGE INTERACTIVITY (SEO, Privacy, Terms toggles) ================= -->
+<script>
+  (function() {
+    function setupToggle(triggerId, contentId, labelReadMore, labelReadLess) {
+      const btn = document.getElementById(triggerId);
+      const content = document.getElementById(contentId);
+      if (!btn || !content) return;
+      let expanded = false;
+      btn.addEventListener('click', () => {
+        expanded = !expanded;
+        if (expanded) {
+          content.classList.add('open');
+          btn.textContent = labelReadLess + ' ↑';
+        } else {
+          content.classList.remove('open');
+          btn.textContent = labelReadMore + ' ↓';
+        }
+      });
+    }
+
+    // SEO article
+    setupToggle('seo-read-more-btn', 'seo-full-content', 'Read More', 'Read Less');
+    // Privacy policy
+    setupToggle('privacy-read-more-btn', 'privacy-full', 'Read More', 'Read Less');
+    // Terms & conditions
+    setupToggle('terms-read-more-btn', 'terms-full', 'Read More', 'Read Less');
+
+    // Smooth scroll for footer links (same page anchors)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  })();
+</script>
+
+
+</!doctype>
